@@ -1,0 +1,18 @@
+<link href="/css/bootstrap.css" rel="stylesheet">
+<link href="/css/bootstrap-responsive.css" rel="stylesheet">
+
+<div class= "jumbotron">
+<h3>Show all Users</h3>
+<table class="table table-striped">
+	<tr>
+	<th> Username </th> <td> Email </th>
+	</tr>
+	<% @user.each do |user| %>
+	<tr>
+		
+		<td> <%= user.user_name %></td>
+		<td> <%= user.email %></td>
+	</tr>
+	<% end %>
+</table>
+</div>

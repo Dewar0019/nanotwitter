@@ -3,5 +3,5 @@ class Tweet < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :favorite
 	has_many :reply
-	has_many :tag :through => :tweet_tag
+	has_many :tag, through: :tweet_tag
 end
