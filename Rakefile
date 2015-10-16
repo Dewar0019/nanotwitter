@@ -1,3 +1,3 @@
 #This File is for migrations
-require './nt'    
+require './app'    
 require 'sinatra/activerecord/rake'
