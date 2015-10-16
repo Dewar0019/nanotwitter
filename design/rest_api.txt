@@ -1,0 +1,6 @@
+/api/v1/tweets/id
+/api/v1/tweets/recent
+/api/v1/users/name
+/api/v1/users/name/tweets
+/api/v1/users/name/followers
+/api/v1/users/name/followings

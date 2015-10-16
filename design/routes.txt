@@ -1,0 +1,42 @@
+/
+Homepage has most recent tweets for not logged in users. Has login and signup link
+Redirect to /username if already logged in.
+
+/login GET
+login page (username + password)
+
+/logout POST
+Logout current user
+
+/signup POST GET
+Signup page parameters   *required
+email *
+accountname *
+password *
+
+/users/name GET
+User homepage, for both current logged in user and other users
+For authorised user, he/she can create a new tweet here. Has logout link.
+
+/users/name/setting GET PUTS
+Change user profile if authorised, redirect to user/id if not authorised (delete account, update info)
+You can only go to this if it’s for the current user
+
+/follow/username2  POST
+Current user follows username2
+
+/unfollow/username2  POST
+Unfollow username2 i.e. current user unfollows username
+
+/users/name/followers  GET
+List of all followers for this user
+
+/users/name/followings GET
+List of all people who follow this user
+
+/tweets/id GET
+A tweet page with retweet number and favorite number
+Shows comments (comment count, commenting user)
+
+/tweets/new POST
+Create a new tweet
