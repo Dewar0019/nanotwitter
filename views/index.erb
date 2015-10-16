@@ -1,32 +1,39 @@
-<link href="/css/bootstrap.css" rel="stylesheet">
-<link href="/css/bootstrap-responsive.css" rel="stylesheet">
-<div class= "site-wrapper">
-	<div class= "site-wrapper-inner">
-		<div class= "cover-container">
-					<div class= "masthead clearfix">
-						<div class= "inner">
-								</div>
-			</div>
-			<nav>
-			<ul class ="nav masthead-nav">
-				<li class= "active"> Home</li>
-			</ul>
-			</nav>
-		<h3>Show all Users</h3>
-		<div class = "inner cover">
-			<table class="table table-striped">
-			<tr>
-			<th> Username </th> <td> Email </th>
-			</tr>
-			<% @user.each do |user| %>
-			<tr>
-				
-				<td> <%= user.user_name %></td>
-				<td> <%= user.email %></td>
-			</tr>
-			<% end %>
-		</table>
-				</div>
-			</div>
-		</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">NanoTwitter</a>
+        <a href="/login">
+          <button class="btn btn-default navbar-btn">Sign in</button>
+        </a>
+        <a href="/signup">
+          <button class="btn btn-default navbar-btn">Sign up</button>
+        </a>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Tweet</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th>V</th>
+        <th>Hello World</th>
+        <th>10 Oct 2018</th>
+      </tr>
+
+      <tr>
+        <th>B</th>
+        <th>Testing 12345</th>
+        <th>9 Dec 1994</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
