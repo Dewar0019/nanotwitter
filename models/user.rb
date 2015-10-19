@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
-	validates :user_name, :email, :password, presence: true   #would not be valid without username password and email
-	validates_uniqueness_of :user_name, :email
+	validates :user_name, :email, presence: true, uniqueness: { case_sensitive: false }
+  validates :password, presence: true, length: { minimum: 6 }
 
-	has_many :favorite
-	has_many :tweet
-	has_many :message
-	has_many :retweet
-	has_many :reply
+	has_many :favorites
+	has_many :tweets
+	has_many :messages
+	has_many :retweets
+	has_many :replys
 end
