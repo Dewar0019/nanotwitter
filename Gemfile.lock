@@ -20,6 +20,9 @@ GEM
       columnize (= 0.9.0)
     coderay (1.1.0)
     columnize (0.9.0)
+    fabrication (2.14.1)
+    faker (1.5.0)
+      i18n (~> 0.5)
     i18n (0.7.0)
     json (1.8.3)
     method_source (0.8.2)
@@ -43,11 +46,6 @@ GEM
     sinatra-activerecord (2.0.9)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
-    sinatra-bootstrap (0.6.1)
-      sinatra (>= 1.0)
-      sinatra-outputbuffer
-    sinatra-outputbuffer (0.1.0)
-      sinatra (>= 1.0.a)
     slop (3.6.0)
     thread_safe (0.3.5)
     tilt (2.0.1)
@@ -59,12 +57,13 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  fabrication
+  faker
   pg
   pry-byebug
   require_all
   sinatra
   sinatra-activerecord
-  sinatra-bootstrap
 
 BUNDLED WITH
    1.10.6

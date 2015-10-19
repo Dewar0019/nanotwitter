@@ -6,3 +6,5 @@ gem "sinatra-activerecord"
 gem "pg"
 gem 'pry-byebug'
 gem 'require_all'
+gem 'faker'
+gem 'fabrication'
