@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 	has_many :tweets
 	has_many :messages
 	has_many :retweets
-	has_many :replys
+	has_many :replies
 end

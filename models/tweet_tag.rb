@@ -1,4 +1,4 @@
-class Tweet_tag < ActiveRecord::Base
+class Tweettag < ActiveRecord::Base
 	belongs_to :tweet
-	has_many :tag
+  belongs_to :tag
 end

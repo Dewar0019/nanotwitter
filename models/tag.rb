@@ -1,3 +1,3 @@
 class Tag < ActiveRecord::Base
-	belongs_to :tweet_tag
+	has_many :tweets, through: :tweet_tag
 end
