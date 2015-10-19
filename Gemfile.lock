@@ -64,6 +64,3 @@ DEPENDENCIES
   require_all
   sinatra
   sinatra-activerecord
-
-BUNDLED WITH
-   1.10.6

@@ -2,7 +2,7 @@
 <ul>
   <% @users.each do |user| %>
     <li>
-      <%= user.user_name %> sign up with <%= user.email %>.
+      <%= user.user_name %> sign up with <%= user.email %> with password <%= user.password %>.
     </li>
   <% end %>
 </ul>
