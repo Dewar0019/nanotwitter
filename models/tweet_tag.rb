@@ -1,4 +1,3 @@
 class Tweettag < ActiveRecord::Base
-	belongs_to :tweet
-  belongs_to :tag
+  belongs_to :tweet
 end

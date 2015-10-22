@@ -1,8 +1,8 @@
 class Tweet < ActiveRecord::Base
-	belongs_to :user, counter_cache: true
-	belongs_to :retweet
-	belongs_to :favorite
+  belongs_to :user, counter_cache: true
 
-	has_many :reply
-	has_many :tag, through: :tweet_tag
+  has_many :favorites
+  has_many :retweets
+  has_many :replies
+  has_many :tweet_tags
 end
