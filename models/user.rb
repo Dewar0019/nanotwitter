@@ -1,12 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :favorites
-  has_many :tweets
-  has_many :messages
-  has_many :retweets
-  has_many :replies
+  has_many :favorites, dependent: :destroy
+  has_many :tweets, dependent: :destroy
+  has_many :retweets, dependent: :destroy
+  has_many :replies, dependent: :destroy
 
-  has_many :followings, class_name: 'Follow', foreign_key: 'user_id'
-  has_many :followers, class_name: 'Follow', foreign_key: 'following_id'
+  has_many :followings, class_name: 'Follow', foreign_key: 'user_id', dependent: :destroy
+  has_many :followers, class_name: 'Follow', foreign_key: 'following_id', dependent: :destroy
 
   validates :user_name, :email,
     presence: true,
