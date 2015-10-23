@@ -1,11 +1,14 @@
 require 'sinatra'
 require 'sinatra/activerecord'
 require './config/environments' # database configuration
+require 'tilt/erb'
 require 'require_all'
 require_all './models'
 
-
-enable :sessions
+use Rack::Session::Cookie, :key => 'rack.session',
+                           :path => '/',
+                           :expire_after => 2592000, # In seconds
+                           :secret => 'super_secret'
 
 helpers do
 
@@ -17,6 +20,7 @@ end
 
 
 get '/' do
+  @recent_tweets = Tweet.order(created_at: :desc).first(100)
   erb :index
 end
 
