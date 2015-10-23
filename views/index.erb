@@ -1,7 +1,7 @@
 <div class="container">
   <% @recent_tweets.each do |tweet| %>
     <div class="tweet">
-      @<%= tweet.user %><br>
+      @<%= tweet.user.user_name %><br>
       <%= tweet.text %><br>
       <%= tweet.retweets_count %> retweets<br>
       <%= tweet.favorites_count %> favorites<br>
