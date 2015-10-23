@@ -23,12 +23,12 @@ ActiveRecord::Schema.define(version: 20151019043534) do
 
   create_table "follows", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "follow_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "follows", ["follow_id"], name: "index_follows_on_follow_id"
+  add_index "follows", ["following_id"], name: "index_follows_on_following_id"
   add_index "follows", ["user_id"], name: "index_follows_on_user_id"
 
   create_table "replies", force: :cascade do |t|
@@ -49,31 +49,20 @@ ActiveRecord::Schema.define(version: 20151019043534) do
   add_index "retweets", ["tweet_id"], name: "index_retweets_on_tweet_id"
   add_index "retweets", ["user_id"], name: "index_retweets_on_user_id"
 
-  create_table "tags", force: :cascade do |t|
-    t.string "tag"
-  end
-
-  create_table "timelines", force: :cascade do |t|
-    t.integer "tweet_id"
-    t.integer "user_id"
-  end
-
-  add_index "timelines", ["tweet_id"], name: "index_timelines_on_tweet_id"
-  add_index "timelines", ["user_id"], name: "index_timelines_on_user_id"
-
   create_table "tweet_tags", force: :cascade do |t|
     t.integer "tweet_id"
-    t.integer "tag_id"
+    t.string  "tag"
   end
 
-  add_index "tweet_tags", ["tag_id"], name: "index_tweet_tags_on_tag_id"
   add_index "tweet_tags", ["tweet_id"], name: "index_tweet_tags_on_tweet_id"
 
   create_table "tweets", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "retweets_count",  default: 0
+    t.integer  "favorites_count", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
@@ -82,11 +71,11 @@ ActiveRecord::Schema.define(version: 20151019043534) do
     t.string   "user_name"
     t.string   "email"
     t.string   "password"
-    t.integer  "tweets_count"
-    t.integer  "followers_count"
-    t.integer  "followings_count"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.integer  "tweets_count",     default: 0
+    t.integer  "followers_count",  default: 0
+    t.integer  "followings_count", default: 0
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
 end
