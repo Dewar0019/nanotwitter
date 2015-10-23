@@ -5,4 +5,8 @@ class Tweet < ActiveRecord::Base
   has_many :retweets
   has_many :replies
   has_many :tweet_tags
+
+  validates :text,
+    presence: true,
+    length: { minimum: 1, maximum: 140 }
 end

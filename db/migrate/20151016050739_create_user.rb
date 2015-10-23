@@ -4,9 +4,9 @@ class CreateUser < ActiveRecord::Migration
       t.string :user_name
       t.string :email
       t.string :password
-      t.integer :tweets_count
-      t.integer :followers_count
-      t.integer :followings_count
+      t.integer :tweets_count, default: 0
+      t.integer :followers_count, default: 0
+      t.integer :followings_count, default: 0
 
       t.timestamps null: false
     end

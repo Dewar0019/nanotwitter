@@ -5,8 +5,15 @@ class User < ActiveRecord::Base
   has_many :retweets
   has_many :replies
 
-  validates :user_name, :email, presence: true, uniqueness: { case_sensitive: false }
-  validates :password, presence: true, length: { minimum: 6 }
+  has_many :followings, class_name: 'Follow', foreign_key: 'user_id'
+  has_many :followers, class_name: 'Follow', foreign_key: 'following_id'
+
+  validates :user_name, :email,
+    presence: true,
+    uniqueness: { case_sensitive: false }
+  validates :password,
+    presence: true,
+    length: { minimum: 6 }
 
   before_save :downcase_fields
 
