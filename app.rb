@@ -9,15 +9,15 @@ enable :sessions
 
 helpers do
 
-	def login? 
-		!(session[:email].nil?)
-	end
+  def login?
+    !(session[:email].nil?)
+  end
 
 end
 
 
 get '/' do
-	erb :index
+  erb :index
 end
 
 get '/login' do
@@ -25,14 +25,14 @@ get '/login' do
 end
 
 post '/login' do
-	if User.exists?(email: params[:email]) 
-		@user = User.find_by(email: params[:email])
-		if @user.password == params[:password]
-			session[:email] = params[:email]
-			redirect '/'
-		end
-	end
-	erb :error
+  if User.exists?(email: params[:email])
+    @user = User.find_by(email: params[:email])
+    if @user.password == params[:password]
+      session[:email] = params[:email]
+      redirect '/'
+    end
+  end
+  erb :error
 end
 
 get '/logout' do
@@ -45,17 +45,15 @@ get '/signup' do
 end
 
 post '/signup' do
-	user = User.create(user_name: params[:user_name], password: params[:password], email: params[:email])
-	if user.save
-		session[:email] = params[:email]
-		redirect '/'
-	end
-	erb :error
+  user = User.create(user_name: params[:user_name], password: params[:password], email: params[:email])
+  if user.save
+    session[:email] = params[:email]
+    redirect '/'
+  end
+  erb :error
 end
 
 get '/users' do
   @users = User.all
   erb :users
 end
-
-
