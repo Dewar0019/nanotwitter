@@ -16,7 +16,7 @@
 
         <% if login? %>
           <li>
-            <a href="#">Profile</a>
+            <%= link_to("Profile", "users/#{current_user.id}") %>
           <li>
             <a href="/logout">Logout</a>
           </li>
