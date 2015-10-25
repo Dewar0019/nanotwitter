@@ -1,0 +1,15 @@
+<div class="container">
+  <h2>Tweets by <%= user.user_name %>:</h2>
+
+  <ul>
+    <% @tweets.each do |tweet| %>
+      <div class="tweet">
+        @<%= link_to(tweet.user.user_name, "/users/#{tweet.user.id}") %><br>
+        <%= tweet.text %><br>
+        <%= tweet.retweets_count %> retweets<br>
+        <%= tweet.favorites_count %> favorites<br>
+      </div>
+      <br>
+    <% end %>
+  </ul>
+</div>
