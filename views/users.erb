@@ -16,9 +16,9 @@
 
   <%= @user.user_name %>
   <br>
-  Tweets: <%= link_to("#{@user.tweets_count}", "tweets") %>
+  Tweets: <%= link_to("#{@user.tweets_count}", request.path_info + "/tweets") %>
   <br>
-  Following: <%= link_to("#{@user.followings_count}", "followings") %>
+  Following: <%= link_to("#{@user.followings_count}", request.path_info + "/followings") %>
   <br>
-  Followers: <%= link_to("#{@user.followers_count}", "followers") %>
+  Followers: <%= link_to("#{@user.followers_count}", request.path_info + "/followers") %>
 </div>
