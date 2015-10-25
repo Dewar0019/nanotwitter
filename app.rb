@@ -117,6 +117,7 @@ get '/users/:id/followings' do
 end
 
 get '/users/:id/followers' do
+  @user = User.find_by(id: params[:id])
   erb :followers
 end
 
