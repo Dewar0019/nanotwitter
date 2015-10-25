@@ -14,7 +14,7 @@ use Rack::Session::Cookie, :key => 'rack.session',
 
 helpers do
   def user
-    @user ||= User.find(params[:id])
+    @user ||= User.find_by(id: params[:id]) || halt(404)
   end
 
   ##
@@ -53,6 +53,11 @@ helpers do
   def already_follow?(user)
     !Follow.find_by(user_id: current_user.id, following_id: user.id).nil?
   end
+end
+
+not_found do
+  status 404
+  erb :error
 end
 
 get '/' do
