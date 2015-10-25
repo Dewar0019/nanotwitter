@@ -5,6 +5,8 @@ require 'tilt/erb'
 require 'require_all'
 require_all './models'
 
+after { ActiveRecord::Base.connection.close }
+
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
                            :expire_after => 2592000, # In seconds
