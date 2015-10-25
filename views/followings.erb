@@ -1,0 +1,11 @@
+<div class="container">
+  <h2><%= @user.user_name %> follows:</h2>
+
+  <ul>
+    <% @user.followings.each do |f| %>
+      <li>
+        <%= link_to(f.following.user_name, "/users/#{f.following.id}") %>
+      </li>
+    <% end %>
+  </ul>
+</div>
