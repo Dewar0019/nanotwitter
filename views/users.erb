@@ -1,8 +1,24 @@
-<h3>All users</h3>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.user_name %> sign up with <%= user.email %> with password <%= user.password %>.
-    </li>
+<div class="container">
+  <% if login? %>
+    <% if current_user?(@user) %>
+      <form action ="/tweets/new" method ="post">
+        <textarea class="form-control" name="tweet" placeholder="tweet" maxlength="140" rows="3"></textarea>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    <% elsif !already_follow?(@user) %>
+      <form action=<%= request.path_info + "/followers/new" %> method="post">
+        <button type="submit" class="btn btn-default">Follow</button>
+      </form>
+    <% end %>
   <% end %>
-</ul>
+
+  <br>
+
+  <%= @user.user_name %>
+  <br>
+  Tweets: <%= link_to("#{@user.tweets_count}", "tweets") %>
+  <br>
+  Following: <%= link_to("#{@user.followings_count}", "followings") %>
+  <br>
+  Followers: <%= link_to("#{@user.followers_count}", "followers") %>
+</div>

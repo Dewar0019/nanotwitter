@@ -41,6 +41,12 @@ helpers do
   def link_to(link_name, url)
     "<a href=#{url}>#{link_name}</a>"
   end
+
+  ##
+  # returns true if current user already follows user
+  def already_follow?(user)
+    !Follow.find_by(user_id: current_user.id, following_id: user.id).nil?
+  end
 end
 
 get '/' do
@@ -87,7 +93,7 @@ end
 post '/signup' do
   user = User.new(user_name: params[:user_name], password: params[:password], email: params[:email])
   if user.save
-    session[:email] = params[:email]
+    login(user)
     redirect '/'
   else
     "Error"
@@ -99,12 +105,27 @@ get '/users/:id' do
   erb :users
 end
 
+get '/users/:id/tweets' do
+  erb :user_tweets
+end
+
 get '/users/:id/followings' do
   erb :followings
 end
 
 get '/users/:id/followers' do
   erb :followers
+end
+
+# current user follows user_id
+post '/users/:id/followers/new' do
+  follow = Follow.new(user_id: session[:user_id], following_id: params[:id])
+
+  if follow.save
+    redirect "/users/#{params[:id]}"
+  else
+    "Error"
+  end
 end
 
 post '/tweets/new' do
