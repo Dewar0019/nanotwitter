@@ -1,8 +1,8 @@
 <div class="container">
-  <h2>Followers of <%= @user.user_name %>:</h2>
+  <h2>Followers of <%= user.user_name %>:</h2>
 
   <ul>
-    <% @user.followers.each do |f| %>
+    <% user.followers.each do |f| %>
       <li>
         <%= link_to(f.user.user_name, "/users/#{f.user.id}") %>
       </li>

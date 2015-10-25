@@ -1,11 +1,11 @@
 <div class="container">
   <% if login? %>
-    <% if current_user?(@user) %>
+    <% if current_user?(user) %>
       <form action ="/tweets/new" method ="post">
         <textarea class="form-control" name="tweet" placeholder="tweet" maxlength="140" rows="3"></textarea>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
-    <% elsif !already_follow?(@user) %>
+    <% elsif !already_follow?(user) %>
       <form action=<%= request.path_info + "/followers/new" %> method="post">
         <button type="submit" class="btn btn-default">Follow</button>
       </form>
@@ -14,11 +14,11 @@
 
   <br>
 
-  <%= @user.user_name %>
+  <%= user.user_name %>
   <br>
-  Tweets: <%= link_to("#{@user.tweets_count}", request.path_info + "/tweets") %>
+  Tweets: <%= link_to("#{user.tweets_count}", request.path_info + "/tweets") %>
   <br>
-  Following: <%= link_to("#{@user.followings_count}", request.path_info + "/followings") %>
+  Following: <%= link_to("#{user.followings_count}", request.path_info + "/followings") %>
   <br>
-  Followers: <%= link_to("#{@user.followers_count}", request.path_info + "/followers") %>
+  Followers: <%= link_to("#{user.followers_count}", request.path_info + "/followers") %>
 </div>

@@ -13,6 +13,10 @@ use Rack::Session::Cookie, :key => 'rack.session',
                            :secret => 'super_secret'
 
 helpers do
+  def user
+    @user ||= User.find(params[:id])
+  end
+
   ##
   # save user_id to session
   def login(user)
@@ -65,9 +69,9 @@ get '/login' do
 end
 
 post '/login' do
-  user = User.find_by(email: params[:email])
-  if user and user.password == params[:password]
-    login(user)
+  u = User.find_by(email: params[:email])
+  if u and u.password == params[:password]
+    login(u)
     redirect '/'
   else
     "Wrong password or user doesn't exists"
@@ -77,7 +81,6 @@ end
 # fake login to user_id
 get '/login/:id' do
   unless login?
-    user = User.find_by(id: params[:id])
     login(user)
   end
   redirect '/'
@@ -93,9 +96,9 @@ get '/signup' do
 end
 
 post '/signup' do
-  user = User.new(user_name: params[:user_name], password: params[:password], email: params[:email])
-  if user.save
-    login(user)
+  new_user = User.new(user_name: params[:user_name], password: params[:password], email: params[:email])
+  if new_user.save
+    login(new_user)
     redirect '/'
   else
     "Error"
@@ -103,29 +106,27 @@ post '/signup' do
 end
 
 get '/users/:id' do
-  @user = User.find_by(id: params[:id])
   erb :users
 end
 
 get '/users/:id/tweets' do
+  @tweets = Tweet.where(user_id: params[:id]).order(created_at: :desc).first(50)
   erb :user_tweets
 end
 
 get '/users/:id/followings' do
-  @user = User.find_by(id: params[:id])
   erb :followings
 end
 
 get '/users/:id/followers' do
-  @user = User.find_by(id: params[:id])
   erb :followers
 end
 
 # current user follows user_id
 post '/users/:id/followers/new' do
-  follow = Follow.new(user_id: session[:user_id], following_id: params[:id])
+  new_follow = Follow.new(user_id: session[:user_id], following_id: params[:id])
 
-  if follow.save
+  if new_follow.save
     redirect "/users/#{params[:id]}"
   else
     "Error"
@@ -133,9 +134,9 @@ post '/users/:id/followers/new' do
 end
 
 post '/tweets/new' do
-  tweet = Tweet.new(user_id: session[:user_id], text: params[:tweet])
+  new_tweet = Tweet.new(user_id: session[:user_id], text: params[:tweet])
 
-  if tweet.save
+  if new_tweet.save
     redirect '/'
   else
     "Error"
