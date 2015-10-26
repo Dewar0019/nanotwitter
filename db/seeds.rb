@@ -3,17 +3,17 @@ require 'fabrication'
 User.delete_all
 Tweet.delete_all
 
-100.times { Fabricate(:user) }
-100.times { Fabricate(:tweet) }
+100.times { Fabricate(:user) } #creates 100 users
+100.times { Fabricate(:tweet) } #creates 100 random tweets
 
 # seed following
 User.all.each do |u|
   random_number = rand(20)
 
-  followings = (0..100).to_a.sample(random_number)
-  followings.delete(u.id)
+  followings = (0..100).to_a.sample(random_number)  #creates an array of random follower_ids
+  followings.delete(u.id)  #cannot follow itself so delete if it appears
 
-  followings.each do |f|
+  followings.each do |f|  
     Follow.create(user_id: u.id, following_id: f)
   end
 end
