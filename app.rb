@@ -5,6 +5,7 @@ require 'tilt/erb'
 require 'require_all'
 require 'fabrication'
 require 'pry'
+require 'activerecord-reset-pk-sequence'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -122,37 +123,6 @@ get '/users/:id' do
   erb :users
 end
 
-get '/test/reset' do
-  User.delete_all
-  Tweet.delete_all
-  User.create(user_name: "testuser", password: "test123", email: "testuser@test.com")
-  redirect '/'
-end
-
-get '/test/seed/:number' do
-  params[:number].to_i.times { Fabricate(:user) }
-  redirect '/users'
-end
-
-get '/test/tweets/:number' do
-  params[:number].to_i.times { Fabricate(:tweet) }
-  redirect '/'
-end
-
-get '/test/follow/:number' do
-  number = params[:number].to_i
-  test_user = User.find(user_name: "testuser")
-  # seed following
-  random_number = rand(number)
-  followings = (0...User.size).to_a.sample(random_number)  #creates an array of random follower_ids
-  followings.delete(test_user.id)  #cannot follow itself meaning test user so delete if it appears
-  followings.each do |f|  
-    Follow.create(user_id: test_user.id, following_id: f)
-  end
-    redirect '/'
-end
-
-
 get '/users/:id/followings' do
   erb :followings
 end
@@ -186,4 +156,42 @@ post '/tweets/new' do
   else
     "Error"
   end
+end
+
+
+
+
+## Test Interface ##
+
+
+get '/test/reset' do
+  User.destroy_all
+  User.reset_pk_sequence   ##resets database id to 1 after deleting
+  Tweet.destroy_all
+  Tweet.reset_pk_sequence
+  User.create(user_name: "testuser", password: "test123", email: "testuser@test.com")
+  redirect '/'
+end
+
+get '/test/seed/:number' do
+  params[:number].to_i.times { Fabricate(:user) }
+  redirect '/'
+end
+
+get '/test/tweets/:number' do
+  params[:number].to_i.times { Fabricate(:tweet) }
+  redirect '/'
+end
+
+get '/test/follow/:number' do
+  number = params[:number].to_i
+  test_user = User.find_by_user_name("testuser")
+  # seed following
+  random_number = rand(number)+1
+  followings = (0...User.count).to_a.sample(random_number)  #creates an array of random follower_ids
+  followings.delete(test_user.id)  #cannot follow itself meaning test user so delete if it appears
+  followings.each do |f|  
+    Follow.create(user_id: test_user.id, following_id: f)
+  end
+    redirect '/'
 end
