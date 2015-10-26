@@ -9,4 +9,17 @@ class Tweet < ActiveRecord::Base
   validates :text,
     presence: true,
     length: { minimum: 1, maximum: 140 }
+
+  class << self
+    ##
+    # returns n recent tweets by an array of user_id sorted by created time
+    # if user_ids is empty, returns n most recent tweets
+    def recent(n, user_ids = [])
+      if user_ids.empty?
+        Tweet.includes(:user).order(created_at: :desc).first(n)
+      else
+        Tweet.includes(:user).where('user_id in (?)', user_ids).order(created_at: :desc).first(n)
+      end
+    end
+  end
 end

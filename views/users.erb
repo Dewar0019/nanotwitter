@@ -1,8 +1,3 @@
-<h3>All users</h3>
-<ul>
-  <% @users.each do |user| %>
-    <li>
-      <%= user.user_name %> sign up with <%= user.email %> with password <%= user.password %>.
-    </li>
-  <% end %>
-</ul>
+<%= erb :_user_profile %>
+
+<%= erb :_tweets_list %>

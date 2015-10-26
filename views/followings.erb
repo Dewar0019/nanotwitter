@@ -1,0 +1,11 @@
+<%= erb :_user_profile %>
+
+<div class="container">
+  <ul>
+    <% user.followings.each do |f| %>
+      <li>
+        <%= link_to(f.following.user_name, "/users/#{f.following.id}") %>
+      </li>
+    <% end %>
+  </ul>
+</div>

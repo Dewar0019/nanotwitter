@@ -1,11 +1,9 @@
 <div class="container">
-  <% @recent_tweets.each do |tweet| %>
-    <div class="tweet">
-      @<%= tweet.user.user_name %><br>
-      <%= tweet.text %><br>
-      <%= tweet.retweets_count %> retweets<br>
-      <%= tweet.favorites_count %> favorites<br>
-    </div>
-    <br>
+  <% if login? %>
+    <%= erb :_tweets_new %>
   <% end %>
+
+  <br>
 </div>
+
+<%= erb :_tweets_list %>
