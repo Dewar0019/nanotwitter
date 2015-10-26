@@ -61,7 +61,7 @@ not_found do
 end
 
 get '/' do
-  @recent_tweets = Tweet.recent(50)
+  @tweets = Tweet.recent(50)
   erb :index
 end
 
