@@ -12,13 +12,13 @@ class Tweet < ActiveRecord::Base
 
   class << self
     ##
-    # returns n recent tweets by user_id sorted by created time
-    # if user_id is nil, returns n most recent tweets
-    def recent(n, user_id = nil)
-      if user_id
-        Tweet.includes(:user).where(user_id: user_id).order(created_at: :desc).first(n)
-      else
+    # returns n recent tweets by an array of user_id sorted by created time
+    # if user_ids is empty, returns n most recent tweets
+    def recent(n, user_ids = [])
+      if user_ids.empty?
         Tweet.includes(:user).order(created_at: :desc).first(n)
+      else
+        Tweet.includes(:user).where('user_id in (?)', user_ids).order(created_at: :desc).first(n)
       end
     end
   end
