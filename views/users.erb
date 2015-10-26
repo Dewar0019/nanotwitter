@@ -9,6 +9,10 @@
       <form action=<%= request.path_info + "/followers/new" %> method="post">
         <button type="submit" class="btn btn-default">Follow</button>
       </form>
+    <% else %>
+      <form action=<%= request.path_info + "/followers/delete" %> method="post">
+        <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
+      </form>
     <% end %>
   <% end %>
 

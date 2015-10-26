@@ -138,6 +138,12 @@ post '/users/:id/followers/new' do
   end
 end
 
+post '/users/:id/followers/delete' do
+  follow = Follow.find_by(user_id: session[:user_id], following_id: params[:id])
+  Follow.destroy(follow.id)
+  redirect "/users/#{params[:id]}"
+end
+
 post '/tweets/new' do
   new_tweet = Tweet.new(user_id: session[:user_id], text: params[:tweet])
 
