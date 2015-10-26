@@ -1,6 +1,6 @@
-<div class="container">
-  <h2><%= user.user_name %> follows:</h2>
+<%= erb :_user_profile %>
 
+<div class="container">
   <ul>
     <% user.followings.each do |f| %>
       <li>

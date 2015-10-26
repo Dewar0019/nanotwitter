@@ -1,28 +1,13 @@
+<%= erb :_user_profile %>
+
 <div class="container">
-  <% if login? %>
-    <% if current_user?(user) %>
-      <form action ="/tweets/new" method ="post">
-        <textarea class="form-control" name="tweet" placeholder="tweet" maxlength="140" rows="3"></textarea>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-    <% elsif !already_follow?(user) %>
-      <form action=<%= request.path_info + "/followers/new" %> method="post">
-        <button type="submit" class="btn btn-default">Follow</button>
-      </form>
-    <% else %>
-      <form action=<%= request.path_info + "/followers/delete" %> method="post">
-        <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
-      </form>
-    <% end %>
+  <% @tweets.each do |tweet| %>
+    <div class="tweet">
+      @<%= link_to(tweet.user.user_name, "/users/#{tweet.user.id}") %><br>
+      <%= tweet.text %><br>
+      <%= tweet.retweets_count %> retweets<br>
+      <%= tweet.favorites_count %> favorites<br>
+    </div>
+    <br>
   <% end %>
-
-  <br>
-
-  <%= user.user_name %>
-  <br>
-  Tweets: <%= link_to("#{user.tweets_count}", request.path_info + "/tweets") %>
-  <br>
-  Following: <%= link_to("#{user.followings_count}", request.path_info + "/followings") %>
-  <br>
-  Followers: <%= link_to("#{user.followers_count}", request.path_info + "/followers") %>
 </div>

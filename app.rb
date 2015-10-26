@@ -61,7 +61,7 @@ not_found do
 end
 
 get '/' do
-  @recent_tweets = Tweet.order(created_at: :desc).first(50)
+  @recent_tweets = Tweet.recent(50)
   erb :index
 end
 
@@ -111,12 +111,8 @@ post '/signup' do
 end
 
 get '/users/:id' do
+  @tweets = Tweet.recent(50, params[:id])
   erb :users
-end
-
-get '/users/:id/tweets' do
-  @tweets = Tweet.where(user_id: params[:id]).order(created_at: :desc).first(50)
-  erb :user_tweets
 end
 
 get '/users/:id/followings' do
