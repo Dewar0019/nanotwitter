@@ -1,4 +1,29 @@
 <div class="container">
+  <div class="row">
+    <div class="col-md-1 text-center">
+      <%= link_to(user.user_name, request.path_info) %>
+    </div>
+
+    <div class="col-md-1 text-center">
+      Tweets
+      <br>
+      <%= link_to("#{user.tweets_count}", "/users/#{user.id}") %>
+    </div>
+
+    <div class="col-md-1 text-center">
+      Following
+      <br>
+      <%= link_to("#{user.followings_count}", "/users/#{user.id}/followings") %>
+    </div>
+    <div class="col-md-1 text-center">
+      Followers
+      <br>
+      <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
+    </div>
+  </div>
+
+  <br>
+
   <% if login? %>
     <% if current_user?(user) %>
       <%= erb :_tweets_new %>
@@ -12,16 +37,4 @@
       </form>
     <% end %>
   <% end %>
-
-  <br>
-
-  <%= user.user_name %>
-  <br>
-  Tweets: <%= link_to("#{user.tweets_count}", "/users/#{user.id}") %>
-  <br>
-  Following: <%= link_to("#{user.followings_count}", "/users/#{user.id}/followings") %>
-  <br>
-  Followers: <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
 </div>
-
-<br>
