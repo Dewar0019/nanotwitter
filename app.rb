@@ -6,6 +6,7 @@ require 'require_all'
 require 'fabrication'
 require 'pry'
 require 'activerecord-reset-pk-sequence'
+require 'sinatra/flash'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -14,6 +15,7 @@ use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
                            :expire_after => 2592000, # In seconds
                            :secret => 'super_secret'
+
 
 
 helpers do
@@ -49,7 +51,7 @@ helpers do
   end
 
   def link_to(link_name, url)
-    "<a href=#{url}>#{link_name}</a>"
+    "<a href=#{url}> #{link_name} </a>"
   end
 
   ##
@@ -114,7 +116,9 @@ post '/signup' do
     login(new_user)
     redirect '/'
   else
-    "Error"
+    flash[:notice] = "Error in signup"
+    redirect '/signup'
+    
   end
 end
 
