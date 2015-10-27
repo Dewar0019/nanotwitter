@@ -2,7 +2,7 @@
   <% @tweets.each do |tweet| %>
     <div class="tweet">
       <div class="tweet-header">
-        <b><%= link_to(tweet.user.name, "users/#{tweet.user.id}") %></b>
+        <b><%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %></b>
         <small>
           @<%= tweet.user.user_name %>
         </small>
