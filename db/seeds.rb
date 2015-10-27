@@ -7,7 +7,7 @@ require 'fabrication'
 User.all.each do |u|
   random_number = rand(20)
 
-  followings = (0..100).to_a.sample(random_number)  #creates an array of random follower_ids
+  followings = (1..100).to_a.sample(random_number)  #creates an array of random follower_ids
   followings.delete(u.id)  #cannot follow itself so delete if it appears
 
   followings.each do |f|
@@ -19,10 +19,10 @@ end
 Tweet.all.each do |t|
   random_number = rand(20)
 
-  retweeters = (0..100).to_a.sample(random_number)
+  retweeters = (1..100).to_a.sample(random_number)
   retweeters.delete(t.user_id)
 
-  favorites = (0..100).to_a.sample(random_number)
+  favorites = (1..100).to_a.sample(random_number)
   favorites.delete(t.user_id)
 
   retweeters.each do |r|
