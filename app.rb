@@ -6,7 +6,6 @@ require 'require_all'
 require 'fabrication'
 require 'pry'
 require 'activerecord-reset-pk-sequence'
-require 'sinatra/flash'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -169,8 +168,8 @@ end
 
 
 get '/test/reset' do
-  User.find_by_user_name("testuser").destroy
-  User.create(user_name: "testuser", password: "test123", email: "testuser@test.com")
+  User.find_by_user_name("test_user").destroy
+  User.create(id: 5000, user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
   redirect '/'
 end
 
@@ -186,7 +185,7 @@ end
 
 get '/test/follow/:number' do
   number = params[:number].to_i
-  test_user = User.find_by_user_name("testuser")
+  test_user = User.find_by_user_name("test_user")
   # seed following
   random_number = rand(number)+1
   followings = (1...User.count).to_a.sample(random_number)  #creates an array of random follower_ids
