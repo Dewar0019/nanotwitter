@@ -19,3 +19,7 @@ body {
   padding: 10px 15px;
   word-wrap: break-word;
 }
+
+#tweet-new {
+  width: 75%;
+}
