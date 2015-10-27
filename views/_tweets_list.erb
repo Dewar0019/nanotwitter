@@ -1,10 +1,26 @@
 <div class="container">
   <% @tweets.each do |tweet| %>
     <div class="tweet">
-      @<%= link_to(tweet.user.user_name, "users/#{tweet.user.id}") %><br>
-      <%= tweet.text %><br>
-      <%= tweet.retweets_count %> retweets<br>
-      <%= tweet.favorites_count %> favorites<br>
+      <div class="tweet-header">
+        <b><%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %></b>
+        <small>
+          @<%= tweet.user.user_name %>
+        </small>
+        .
+        <%= tweet.pretty_print_date %>
+      <br>
+      </div>
+      <div class="tweet-content">
+        <%= tweet.text %><br>
+        <div class="row">
+          <div class="col-md-2">
+            <%= tweet.retweets_count %> retweets
+          </div>
+          <div class="col-md-2">
+            <%= tweet.favorites_count %> favorites
+          </div>
+        </div>
+      </div>
     </div>
     <br>
   <% end %>

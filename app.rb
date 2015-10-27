@@ -6,6 +6,7 @@ require 'require_all'
 require 'fabrication'
 require 'pry'
 require 'activerecord-reset-pk-sequence'
+require 'sinatra/flash'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -14,6 +15,7 @@ use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
                            :expire_after => 2592000, # In seconds
                            :secret => 'super_secret'
+
 
 
 helpers do
@@ -49,7 +51,7 @@ helpers do
   end
 
   def link_to(link_name, url)
-    "<a href=#{url}>#{link_name}</a>"
+    "<a href=#{url}> #{link_name} </a>"
   end
 
   ##
@@ -114,7 +116,9 @@ post '/signup' do
     login(new_user)
     redirect '/'
   else
-    "Error"
+    flash[:notice] = "Error in signup"
+    redirect '/signup'
+    
   end
 end
 
@@ -185,9 +189,9 @@ get '/test/follow/:number' do
   test_user = User.find_by_user_name("testuser")
   # seed following
   random_number = rand(number)+1
-  followings = (0...User.count).to_a.sample(random_number)  #creates an array of random follower_ids
+  followings = (1...User.count).to_a.sample(random_number)  #creates an array of random follower_ids
   followings.delete(test_user.id)  #cannot follow itself meaning test user so delete if it appears
-  followings.each do |f|  
+  followings.each do |f|
     Follow.create(user_id: test_user.id, following_id: f)
   end
     redirect '/'

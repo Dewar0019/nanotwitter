@@ -1,6 +1,6 @@
 require 'faker'
 
 Fabricator(:tweet) do
-  text { Faker::Lorem.characters(140) }
+  text { Faker::Company.catch_phrase }
   user_id { rand(User.count) +1 }
 end
