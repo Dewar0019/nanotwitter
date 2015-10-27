@@ -22,4 +22,11 @@ class Tweet < ActiveRecord::Base
       end
     end
   end
+
+  ##
+  # pretty print created time of a tweet
+  # ie. 16 Oct 2015 22:17
+  def pretty_print_date
+    self.created_at.strftime("%-d %b %Y %H:%M")
+  end
 end
