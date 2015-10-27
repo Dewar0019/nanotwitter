@@ -165,10 +165,7 @@ end
 
 
 get '/test/reset' do
-  User.destroy_all
-  User.reset_pk_sequence   ##resets database id to 1 after deleting
-  Tweet.destroy_all
-  Tweet.reset_pk_sequence
+  User.find_by_user_name("testuser").destroy
   User.create(user_name: "testuser", password: "test123", email: "testuser@test.com")
   redirect '/'
 end
