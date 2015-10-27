@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151019043534) do
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
   create_table "users", force: :cascade do |t|
+    t.string   "name"
     t.string   "user_name"
     t.string   "email"
     t.string   "password"
