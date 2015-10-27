@@ -153,7 +153,6 @@ end
 
 post '/tweets/new' do
   new_tweet = Tweet.new(user_id: session[:user_id], text: params[:tweet])
-
   if new_tweet.save
     redirect '/'
   else
@@ -166,10 +165,15 @@ end
 
 ## Test Interface ##
 
-
 get '/test/reset' do
-  User.find_by_user_name("test_user").destroy
-  User.create(id: 5000, user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
+  test_user = User.find_by_user_name("test_user")
+  if(test_user)
+    save_id = test_user.id
+    test_user.destroy
+    User.create(id: save_id, user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
+  else 
+    User.create(user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
+  end
   redirect '/'
 end
 
