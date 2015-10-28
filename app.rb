@@ -5,7 +5,6 @@ require 'tilt/erb'
 require 'require_all'
 require 'fabrication'
 require 'pry'
-require 'activerecord-reset-pk-sequence'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -37,11 +36,11 @@ helpers do
   ##
   # returns true if given user is the current user
   def current_user?(user)
-    user == current_user
+    user.id = session[:user_id]
   end
 
   def login?
-    !current_user.nil?
+    session.key?(:user_id)
   end
 
   def logout
@@ -161,14 +160,15 @@ end
 
 get '/test/reset' do
   test_user = User.find_by_user_name("test_user")
-  if(test_user)
+  if test_user
     save_id = test_user.id
     test_user.destroy
     User.create(id: save_id, user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
   else
     User.create(user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
   end
-  redirect '/'
+
+  redirect "/users/#{test_user.id}"
 end
 
 get '/test/seed/:number' do
@@ -177,19 +177,20 @@ get '/test/seed/:number' do
 end
 
 get '/test/tweets/:number' do
-  params[:number].to_i.times { Fabricate(:tweet) }
-  redirect '/'
+  test_user = User.find_by_user_name("test_user")
+  params[:number].to_i.times { Fabricate(:tweet, user_id: test_user.id) }
+
+  redirect "/users/#{test_user.id}"
 end
 
 get '/test/follow/:number' do
-  number = params[:number].to_i
   test_user = User.find_by_user_name("test_user")
-  # seed following
-  random_number = rand(number)+1
-  followings = (1...User.count).to_a.sample(random_number)  #creates an array of random follower_ids
-  followings.delete(test_user.id)  #cannot follow itself meaning test user so delete if it appears
+
+  # get array of all user_id then remove test_user.id from that array
+  followings = ( User.ids - [ test_user.id ] ).sample( params[:number].to_i  )
   followings.each do |f|
-    Follow.create(user_id: test_user.id, following_id: f)
+    Follow.create(user_id: f, following_id: test_user.id)
   end
-    redirect '/'
+
+  redirect "/users/#{test_user.id}"
 end
