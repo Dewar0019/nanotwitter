@@ -23,11 +23,9 @@
       <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
     </div>
 
-    <div>
-      <% if login? %>
-        <% if current_user?(user) %>
-          <%= erb :_tweets_new %>
-        <% elsif already_follow?(user) %>
+    <div class="col-md-1 text-center">
+      <% if login? and !current_user?(user) %>
+        <% if Follow.follow?(current_user, user) %>
           <form action=<%= "/users/#{user.id}/followers/delete" %> method="post">
             <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
           </form>
@@ -37,6 +35,15 @@
           </form>
         <% end %>
       <% end %>
+    </div>
+  </div>
+
+  <br>
+
+  <div>
+    <% if login? and current_user?(user )%>
+      <%= erb :_tweets_new %>
+    <% end %>
   </div>
 </div>
 

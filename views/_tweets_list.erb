@@ -1,7 +1,7 @@
 <div class="container">
   <% @tweets.each do |tweet| %>
-    <div class="tweet">
-      <div class="tweet-header">
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <b><%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %></b>
         <small>
           @<%= tweet.user.user_name %>
@@ -10,7 +10,7 @@
         <%= tweet.pretty_print_date %>
       <br>
       </div>
-      <div class="tweet-content">
+      <div class="panel-body">
         <%= tweet.text %><br>
         <div class="row">
           <div class="col-md-2">

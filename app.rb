@@ -52,12 +52,6 @@ helpers do
   def link_to(link_name, url)
     "<a href=#{url}> #{link_name} </a>"
   end
-
-  ##
-  # returns true if current user already follows user
-  def already_follow?(user)
-    !Follow.find_by(user_id: current_user.id, following_id: user.id).nil?
-  end
 end
 
 not_found do
@@ -117,7 +111,7 @@ post '/signup' do
   else
     flash[:notice] = "Error in signup"
     redirect '/signup'
-    
+
   end
 end
 
@@ -171,7 +165,7 @@ get '/test/reset' do
     save_id = test_user.id
     test_user.destroy
     User.create(id: save_id, user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
-  else 
+  else
     User.create(user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
   end
   redirect '/'

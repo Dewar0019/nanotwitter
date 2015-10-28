@@ -2,21 +2,11 @@ body {
   background-color: #F5F8FA;
 }
 
-.tweet {
-  background-color: #FFFFFF;
-  border: 1px solid #E3E3E3;
-  border-radius: 3px;
+.panel {
   width: 75%;
 }
 
-.tweet-header {
-  background-color: #F7F7F7;
-  padding: 10px 15px;
-  word-wrap: break-word;
-}
-
-.tweet-content {
-  padding: 10px 15px;
+.panel-heading .panel-body {
   word-wrap: break-word;
 }
 
