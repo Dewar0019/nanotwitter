@@ -9,7 +9,6 @@ gem 'fabrication'
 
 group :development do
   gem 'pry-byebug'
-  gem 'activerecord-reset-pk-sequence'
   gem 'sqlite3'
 end
 
