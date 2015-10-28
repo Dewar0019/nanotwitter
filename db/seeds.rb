@@ -5,11 +5,7 @@ require 'fabrication'
 
 # seed following
 User.all.each do |u|
-  random_number = rand(20)
-
-  followings = (1..100).to_a.sample(random_number)  #creates an array of random follower_ids
-  followings.delete(u.id)  #cannot follow itself so delete if it appears
-
+  followings = ( User.ids - [ u.id ] ).sample(rand(20))  #creates an array of random follower_ids
   followings.each do |f|
     Follow.create(user_id: u.id, following_id: f)
   end
@@ -17,18 +13,12 @@ end
 
 # seed retweet and favorite
 Tweet.all.each do |t|
-  random_number = rand(20)
-
-  retweeters = (1..100).to_a.sample(random_number)
-  retweeters.delete(t.user_id)
-
-  favorites = (1..100).to_a.sample(random_number)
-  favorites.delete(t.user_id)
-
+  retweeters = ( User.ids - [ t.user_id ] ).sample( rand(20) )
   retweeters.each do |r|
     Retweet.create(tweet_id: t.id, user_id: r)
   end
 
+  favorites = ( User.ids - [ t.user_id ] ).sample( rand(20) )
   favorites.each do |f|
     Favorite.create(tweet_id: t.id, user_id: f)
   end
