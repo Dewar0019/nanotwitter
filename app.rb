@@ -88,7 +88,8 @@ post '/login' do
     login(u)
     redirect '/'
   else
-    "Wrong password or user doesn't exists"
+    flash[:notice] = "Wrong password or user doesn't exists"
+    redirect '/login'
   end
 end
 
