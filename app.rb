@@ -7,7 +7,9 @@ require 'fabrication'
 require 'pry'
 require 'sinatra/flash'
 require 'digest/md5'
+require 'rake/testtask'
 require_all './models'
+
 
 after { ActiveRecord::Base.connection.close }
 
@@ -15,6 +17,11 @@ use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
                            :expire_after => 2592000, # In seconds
                            :secret => 'super_secret'
+
+
+Rake::TestTask.new do |t|
+  t.pattern = "spec/*_spec.rb"
+end
 
 
 helpers do

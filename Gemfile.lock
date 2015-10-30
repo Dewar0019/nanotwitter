@@ -39,6 +39,8 @@ GEM
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
     require_all (1.3.3)
     sinatra (1.4.6)
       rack (~> 1.4)
@@ -64,13 +66,12 @@ DEPENDENCIES
   bcrypt
   fabrication
   faker
+  minitest
   pg
   pry-byebug
+  rack-test
   require_all
   sinatra
   sinatra-activerecord
   sinatra-flash
   sqlite3
-
-BUNDLED WITH
-   1.10.6

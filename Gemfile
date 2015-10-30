@@ -8,6 +8,8 @@ gem 'faker'
 gem 'fabrication'
 gem 'bcrypt'
 gem 'sinatra-flash'
+gem 'minitest'
+gem 'rack-test'
 
 group :development do
   gem 'pry-byebug'
