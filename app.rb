@@ -16,7 +16,6 @@ use Rack::Session::Cookie, :key => 'rack.session',
                            :secret => 'super_secret'
 
 
-
 helpers do
   def user
     @user ||= User.find_by(id: params[:id]) || halt(404)
@@ -50,6 +49,10 @@ helpers do
 
   def link_to(link_name, url)
     "<a href=#{url}> #{link_name} </a>"
+  end
+
+  def h(text)
+    Rack::Utils.escape_html(text)
   end
 end
 
