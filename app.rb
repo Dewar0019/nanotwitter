@@ -5,6 +5,7 @@ require 'tilt/erb'
 require 'require_all'
 require 'fabrication'
 require 'pry'
+require 'sinatra/flash'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -45,7 +46,6 @@ helpers do
 
   def logout
     session.delete(:user_id)
-    @current_user = nil
   end
 
   def link_to(link_name, url)
@@ -66,6 +66,7 @@ get '/' do
   else
     @tweets = Tweet.recent(50)
   end
+
   erb :index
 end
 
@@ -78,8 +79,8 @@ get '/login' do
 end
 
 post '/login' do
-  u = User.find_by(email: params[:email])
-  if u and u.password == params[:password]
+  u = User.find_by_email(params[:email])
+  if u and u.authenticate(params[:password])
     login(u)
     redirect '/'
   else
@@ -103,14 +104,13 @@ get '/signup' do
 end
 
 post '/signup' do
-  new_user = User.new(user_name: params[:user_name], password: params[:password], email: params[:email])
+  new_user = User.new(params)
   if new_user.save
     login(new_user)
     redirect '/'
   else
     flash[:notice] = "Error in signup"
     redirect '/signup'
-
   end
 end
 
@@ -159,14 +159,17 @@ end
 ## Test Interface ##
 
 get '/test/reset' do
+  test_params = {user_name: "test_user",
+                 name:"test user",
+                 password: "test123",
+                 email: "testuser@test.com"}
+
+  # destroy test_user if it exists
   test_user = User.find_by_user_name("test_user")
-  if test_user
-    save_id = test_user.id
-    test_user.destroy
-    User.create(id: save_id, user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
-  else
-    User.create(user_name: "test_user", name:"test user", password: "test123", email: "testuser@test.com")
-  end
+  test_user.destroy if test_user
+
+  # create a new test_user
+  test_user = User.create(test_params)
 
   redirect "/users/#{test_user.id}"
 end

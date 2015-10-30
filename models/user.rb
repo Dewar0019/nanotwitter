@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_secure_password
+
   has_many :favorites, dependent: :destroy
   has_many :tweets, dependent: :destroy
   has_many :retweets, dependent: :destroy

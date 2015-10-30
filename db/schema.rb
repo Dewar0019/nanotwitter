@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20151019043534) do
     t.string   "name"
     t.string   "user_name"
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
     t.integer  "tweets_count",     default: 0
     t.integer  "followers_count",  default: 0
     t.integer  "followings_count", default: 0
