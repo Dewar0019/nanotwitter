@@ -6,6 +6,7 @@ require 'require_all'
 require 'fabrication'
 require 'pry'
 require 'sinatra/flash'
+require 'digest/md5'
 require_all './models'
 
 after { ActiveRecord::Base.connection.close }
@@ -119,6 +120,10 @@ end
 
 get '/users/:id' do
   @tweets = Tweet.recent(50, [ params[:id] ])
+  email_address = User.find_by(id: params[:id])
+  email_address =email_address.email
+  hash = Digest::MD5.hexdigest(email_address)
+  @image_src = "http://www.gravatar.com/avatar/#{hash}"
   erb :users
 end
 

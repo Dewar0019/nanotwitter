@@ -1,5 +1,6 @@
 body {
-  background-color: #F5F8FA;
+  background-color: #c0deed;
+  /*#F5F8FA previous color*/ 
 }
 
 .panel {
@@ -12,4 +13,15 @@ body {
 
 #tweet-new {
   width: 75%;
+}
+
+#avatar {
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius-bottomright: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  border-radius: 5px;
+  width:100%;
+  height:100%;
+  border: 10px solid #ffffff;
 }

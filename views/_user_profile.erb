@@ -1,6 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 text-center">
+      <a href=<%= "/users/#{user.id}"%>><img class="img-responsive" id="avatar" src=<%= @image_src %>>
+      <br>
       <%= link_to(user.name, request.path_info) %>
       <br>
       @<%= user.user_name %>
