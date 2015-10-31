@@ -1,6 +1,9 @@
 require 'digest/md5'
+require './helpers/user_helper'
 
 class UserController < ApplicationController
+  helpers UserHelper
+
   get '/signup' do
     erb :signup
   end
@@ -18,10 +21,6 @@ class UserController < ApplicationController
 
   get '/users/:id' do
     @tweets = Tweet.recent(50, [ params[:id] ])
-    email_address = User.find_by(id: params[:id])
-    email_address = email_address.email
-    hash = Digest::MD5.hexdigest(email_address)
-    @image_src = "http://www.gravatar.com/avatar/#{hash}"
     erb :users
   end
 
