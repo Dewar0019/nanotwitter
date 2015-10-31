@@ -23,7 +23,15 @@ class NanoTwitter < Sinatra::Base
   use TestController
   use TweetController
   use UserController
-  use ErrorController
+
+  not_found do
+    status 404
+    "The page you requested doesn't exist"
+  end
+
+  error 500 do
+    "Internal error"
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
