@@ -20,7 +20,7 @@ $ bundle install
 
 #### Starting the app
 ```sh
-$ ruby app.rb
+$ rackup -p 4567
 ```
 
 Open your browser and go to url http://localhost:4567/
