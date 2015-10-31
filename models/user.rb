@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :tweets, dependent: :destroy
   has_many :retweets, dependent: :destroy
   has_many :replies, dependent: :destroy
+  has_many :timelines, dependent: :destroy
 
   has_many :followings, class_name: 'Follow', foreign_key: 'user_id', dependent: :destroy
   has_many :followers, class_name: 'Follow', foreign_key: 'following_id', dependent: :destroy
