@@ -1,4 +1,4 @@
-module UserSession
+module ApplicationHelper
   def user
     @user ||= User.find_by(id: params[:id]) || halt(404)
   end
@@ -37,5 +37,3 @@ module UserSession
     Rack::Utils.escape_html(text)
   end
 end
-
-helpers UserSession

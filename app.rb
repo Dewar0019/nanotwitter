@@ -1,24 +1,30 @@
 require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/activerecord'
-require './config/environments' # database configuration
-require 'tilt/erb'
-require 'require_all'
 require 'sinatra/flash'
+
 require 'rake/testtask'
-require_all './routes'
+
+require './config/environments' # database configuration
+
+require 'tilt/erb'
+
+require 'require_all'
 require_all './models'
-require './helpers/usersession'
-
-include UserSession
-
-
-after { ActiveRecord::Base.connection.close }
-
-use Rack::Session::Cookie, :key => 'rack.session',
-                           :path => '/',
-                           :expire_after => 2592000, # In seconds
-                           :secret => 'super_secret'
+require_all './controllers'
 
 Rake::TestTask.new do |t|
   t.pattern = "spec/*_spec.rb"
+end
+
+class NanoTwitter < Sinatra::Base
+  use HomepageController
+  use SessionController
+  use TestController
+  use TweetController
+  use UserController
+  use ErrorController
+
+  # start the server if ruby file executed directly
+  run! if app_file == $0
 end
