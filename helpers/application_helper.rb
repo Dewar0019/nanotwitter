@@ -18,7 +18,7 @@ module ApplicationHelper
   ##
   # returns true if given user is the current user
   def current_user?(user)
-    user.id = session[:user_id]
+    user.id == session[:user_id]
   end
 
   def login?
