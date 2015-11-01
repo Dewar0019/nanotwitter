@@ -3,6 +3,8 @@ class CreateTimeline < ActiveRecord::Migration
     create_table :timelines do |t|
       t.belongs_to :tweet, index: true
       t.belongs_to :user, index: true
+
+      t.timestamps null: false
     end
   end
 
