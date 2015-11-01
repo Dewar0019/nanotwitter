@@ -25,8 +25,11 @@ class NanoTwitter < Sinatra::Base
   use UserController
 
   not_found do
-    status 404
     "The page you requested doesn't exist"
+  end
+
+  error 404 do
+    not_found
   end
 
   error 500 do
