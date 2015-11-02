@@ -10,6 +10,8 @@ gem 'bcrypt'
 gem 'sinatra-flash'
 gem 'minitest'
 gem 'rack-test'
+gem 'capybara'
+gem 'minitest-capybara'
 
 group :development do
   gem 'pry-byebug'
