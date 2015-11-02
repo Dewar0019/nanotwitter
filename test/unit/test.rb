@@ -32,13 +32,7 @@ class MyTest < MiniTest::Test
     assert page.has_content?('Wrong password or user doesnot exists'), "Test failed, Sign in with blank fields should not work"
   end
 
-  def test_signin_successful_with_seed_user
-    visit '/login'
-    page.fill_in 'email', :with => 'testuser892@test.com'
-    page.fill_in 'password', :with => 'testuser892' 
-    click_button('Login')
-    assert page.has_content?('testuser892'), "Test failed, Sign in with correct login should work"
-  end
+  
 
 
 end
