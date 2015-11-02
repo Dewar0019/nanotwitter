@@ -11,7 +11,7 @@ class MyTest < MiniTest::Test
 
   def test_root_path_works
     visit '/'
-    assert page.has_content?('hello'), "home page path failed"
+    assert page.has_no_content?('NOTACONTENT'), "home page path failed"
   end
 
 
