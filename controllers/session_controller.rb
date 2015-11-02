@@ -10,7 +10,7 @@ class SessionController < ApplicationController
       login(u)
       redirect '/'
     else
-      flash[:notice] = "Wrong password or user doesn't exists"
+      flash[:notice] = "Wrong password or user doesnot exists"
       redirect '/login'
     end
   end

@@ -17,7 +17,7 @@ class MyTest < MiniTest::Test
     assert page.has_content?('Error in signup'), "Test failed, Sign up with blank fields should not work"
   end
 
-  def test_successful_signup
+  def test_signup_with_already_existing_user
     visit '/signup'
     page.fill_in 'user_name', :with => 'test_user'
     page.fill_in 'email', :with => 'testuser@test.com'
@@ -25,5 +25,12 @@ class MyTest < MiniTest::Test
     click_button('Submit')
     assert page.has_content?('Error in signup'), "Test failed, Sign up with already existing user and email should not work"
   end
+
+  def test_signin_with_blank_fields
+    visit '/login'
+    click_button('Login')
+    assert page.has_content?('Wrong password or user doesnot exists'), "Test failed, Sign in with blank fields should not work"
+  end
+
 
 end
