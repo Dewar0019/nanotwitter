@@ -1,7 +1,7 @@
 # test.rb
 require_relative '../../app.rb' 
 require_relative '../helpers/test_helper.rb'
-require_relative '../../controllers/homepage_controller.rb'
+
 
 class MyTest < MiniTest::Test
 
