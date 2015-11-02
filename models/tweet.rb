@@ -10,15 +10,17 @@ class Tweet < ActiveRecord::Base
     presence: true,
     length: { minimum: 1, maximum: 140 }
 
+  after_create :add_to_timeline_self, :add_to_timeline_followers
+
   class << self
     ##
-    # returns n recent tweets by an array of user_id sorted by created time
-    # if user_ids is empty, returns n most recent tweets
-    def recent(n, user_ids = [])
-      if user_ids.empty?
+    # returns n recent tweets by user
+    # if user is nil, returns n recent tweets
+    def recent(n, user = nil)
+      if user.nil?
         Tweet.includes(:user).order(created_at: :desc).first(n)
       else
-        Tweet.includes(:user).where('user_id in (?)', user_ids).order(created_at: :desc).first(n)
+        Tweet.includes(:user).where(user: user).order(created_at: :desc).first(n)
       end
     end
   end
@@ -29,4 +31,20 @@ class Tweet < ActiveRecord::Base
   def pretty_print_date
     self.created_at.strftime("%-d %b %Y %H:%M")
   end
+
+  ##
+  # add to self's timeline everytime user creates a new tweet
+  def add_to_timeline_self
+    Timeline.create(tweet: self, user: self.user)
+  end
+
+  ##
+  # add to followers' timeline everytime user creates a new tweet
+  def add_to_timeline_followers
+    self.user.followers.each do |follower|
+      Timeline.create(tweet: self, user: follower.user)
+    end
+  end
+
+  private :add_to_timeline_self, :add_to_timeline_followers
 end

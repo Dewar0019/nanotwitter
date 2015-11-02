@@ -1,6 +1,6 @@
-class CreateFavorite < ActiveRecord::Migration
+class CreateTimeline < ActiveRecord::Migration
   def change
-    create_table :favorites do |t|
+    create_table :timelines do |t|
       t.belongs_to :tweet, index: true
       t.belongs_to :user, index: true
 
@@ -9,6 +9,6 @@ class CreateFavorite < ActiveRecord::Migration
   end
 
   def down
-    drop_table :favorites
+    drop_table :timelines
   end
 end

@@ -3,6 +3,8 @@ class CreateTweetTag < ActiveRecord::Migration
     create_table :tweet_tags do |t|
       t.belongs_to :tweet, index: true
       t.string :tag
+
+      t.timestamps null: false
     end
   end
 
