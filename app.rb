@@ -13,9 +13,7 @@ require 'require_all'
 require_all './models'
 require_all './controllers'
 
-Rake::TestTask.new do |t|
-  t.pattern = "spec/*_spec.rb"
-end
+
 
 class NanoTwitter < Sinatra::Base
   use HomepageController
