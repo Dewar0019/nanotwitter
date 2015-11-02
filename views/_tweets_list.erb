@@ -4,24 +4,24 @@
       <div class="panel-heading">
         <b><%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %></b>
         <small>
-          @<%= tweet.user.user_name %>
+          <a href=<%= "/users/#{tweet.user.id}" %>>@<%= tweet.user.user_name %></a>
         </small>
         .
         <%= tweet.pretty_print_date %>
       <br>
       </div>
       <div class="panel-body">
-        <%= h tweet.text %><br>
+        <%= h tweet.text %><br><br>
         <div class="row">
           <div class="col-md-2">
-            <%= tweet.retweets_count %> retweets
-          </div>
-          <div class="col-md-2">
-            <%= tweet.favorites_count %> favorites
+              <a href=<%= "/retweet/#{tweet.id}" %> ><span class="glyphicon glyphicon-retweet"> <%= tweet.retweets_count %> </span></a>
+            </div>
+            <div class="col-md-2">
+             <a href= <%= "/favorite/#{tweet.id}" %>  > <span class="glyphicon glyphicon-star"> <%= tweet.favorites_count %> </span></a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <br>
+      <br>
   <% end %>
 </div>
