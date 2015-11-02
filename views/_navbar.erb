@@ -1,4 +1,4 @@
-<nav style="background-color: #add8e6" class="navbar navbar-default" role="navbar">
+<nav style="background-color:  #ffffff" class="navbar navbar-default" role="navbar">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapsible">
@@ -7,29 +7,41 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-
-      <a class="navbar-brand" href="/">NanoTwitter</a><br>
+      <br>
+       <% if login? %>
+       <ul class="nav nav-pills navbar-left">
+        <li role="presentation" class="active"><a href="/">Home</a></li>
+        <li role="presentation"><a href=<%="/users/#{current_user.id}" %>>Profile</a></li>
+        <li role="presentation"><a href="#">Messages</a></li>
+      </ul>
+    <% end %>
     </div>
 
-    <div  class="navbar-collapse collapse" id="navbar-collapsible">
-      <ul class="nav navbar-nav navbar-right">
+   
 
-        <% if login? %>
-          <li>
-            <%= link_to(current_user.user_name ,"/users/#{current_user.id}") %>
-          <li>
-            <a href="/logout">Logout</a>
-          </li>
-        <% else %>
-          <li>
-            <a href="/login">Login</a>
-          </li>
-          <li>
-            <a href="/signup">Signup</a>
-          </li>
-        <% end %>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-      </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <br>
+          <% if login? %>
+            <li>
+              <%= link_to(current_user.user_name ,"/users/#{current_user.id}") %>
+            <li>
+              <a href="/logout">Logout</a>
+            </li>
+          <% else %>
+            <li>
+              <a href="/login">Login</a>
+            </li>
+            <li>
+              <a href="/signup">Signup</a>
+            </li>
+          <% end %>
+        </ul>
+        <br>
+                    <img src="twitter.png" id="nanotwitter-logo" class="navbar navbar-nav" >
+
+      </div>
     </div>
   </div>
 </nav>
