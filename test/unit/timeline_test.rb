@@ -18,14 +18,9 @@ class TweetTest < MiniTest::Test
 	@tweet = Tweet.find_by_text("test tweet 892")
   end
 
-
-
   def test_new_tweet_added_to_self_time_line
 	assert Timeline.exists?(user_id: @u1.id, tweet_id: @tweet.id), "Tweet not seen in own timeline" 
   end
-
-  
-
 
 end
 

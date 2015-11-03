@@ -30,7 +30,4 @@ class AuthenticationTest < MiniTest::Test
     assert page.has_content?('Wrong password or user doesnot exists'), "Test failed, Sign in with blank fields should not work"
   end
 
-  
-
-
 end

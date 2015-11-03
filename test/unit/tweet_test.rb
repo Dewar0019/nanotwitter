@@ -15,5 +15,9 @@ class TweetTest < MiniTest::Test
   	assert !tweet.save, "saved tweet with more than 140 chars"
   end
 
+  def test_tweet_gets_created
+    tweet = Tweet.new(user_id: 1 , text: "Lorem ipsum dolor sit amet, consectetur")
+  	assert tweet.save, "tweet doesn't get created"
+  end
 
 end
