@@ -5,6 +5,10 @@ class UserTest < MiniTest::Test
 
   include Rack::Test::Methods
 
+  def setup 
+    User.destroy_all
+  end
+
   def test_user_attributes_must_not_be_empty
     user = User.new
     assert user.invalid?

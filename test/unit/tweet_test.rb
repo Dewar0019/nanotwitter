@@ -5,6 +5,10 @@ class TweetTest < MiniTest::Test
 
   include Rack::Test::Methods
 
+  def setup 
+    Tweet.destroy_all
+  end
+
   def test_tweet_cannot_save_without_text
     tweet = Tweet.new
   	assert !tweet.save, "saved tweet without text"
