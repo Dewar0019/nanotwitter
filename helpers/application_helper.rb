@@ -30,10 +30,19 @@ module ApplicationHelper
   end
 
   def link_to(link_name, url)
-    "<a href=\"<%= #{url} %> \"> @#{link_name} </a>"
+    "<a href=#{url}> #{link_name} </a>"
   end
-  
+
   def h(text)
     Rack::Utils.escape_html(text)
+  end
+
+  ##
+  # user must login to continue
+  # else redirect to /login
+  def must_login
+    return if login?
+    flash[:notice] = "Please login or signup"
+    redirect '/login'
   end
 end

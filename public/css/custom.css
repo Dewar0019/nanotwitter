@@ -1,9 +1,5 @@
-
-
 body {
   background-color: #1dcaff;
-;
-  /*#F5F8FA previous color*/ 
 }
 
 #nanotwitter-logo {
@@ -32,14 +28,4 @@ body {
   width:100%;
   height:100%;
   border: 10px solid #ffffff;
-}
-
-.navbar .navbar-nav {
-  display: inline-block;
-  float: none;
-  vertical-align: top;
-}
-
-.navbar .navbar-collapse {
-  text-align: center;
 }
