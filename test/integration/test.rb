@@ -9,15 +9,22 @@ class MyTest < MiniTest::Test
 
   include Capybara::DSL
 
-  def test_root_path_works
-    visit '/'
-    assert page.has_no_content?('NOTACONTENT'), "home page path failed"
+  def setup 
+    User.destroy_all
+    Tweet.destroy_all
+    Follow.destroy_all
+    User.new(:user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892").save
   end
 
-  def test_root_path_signup
-    visit '/signup'
-    assert page.has_content?('Sign up'), "Sign up path failed"
+  def test_root_path_when_not_logged_in
+    visit '/'
+    assert page.has_content?('Login'), "home page path failed"
   end
+
+  #def test_root_path_signup
+  #  visit '/signup'
+  #  assert page.has_content?('Signup'), "Sign up path failed"
+  #end
 
   def test_root_path_no_content
     visit '/signup'

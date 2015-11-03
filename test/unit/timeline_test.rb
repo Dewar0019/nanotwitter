@@ -25,7 +25,7 @@ class TweetTest < MiniTest::Test
   end
 
   def test_new_tweet_added_to_followers_time_line
-    assert true
+    assert Timeline.exists?(user_id: @u2.id, tweet_id: @tweet.id), "Tweet not seen in followers timeline" 
   end
 
 

@@ -3,7 +3,6 @@ require 'fabrication'
 100.times { Fabricate(:user) } #creates 100 users
 100.times { Fabricate(:tweet) } #creates 100 random tweets
 
-User.create(:user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892")
 
 # seed following
 User.all.each do |u|
