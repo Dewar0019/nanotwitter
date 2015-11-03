@@ -26,10 +26,10 @@ class MyTest < MiniTest::Test
   #  assert page.has_content?('Signup'), "Sign up path failed"
   #end
 
-  def test_root_path_no_content
-    visit '/signup'
-    assert page.has_no_content?('DOESNOT EXIST'), "Sign up path failed"
-  end
+  #def test_root_path_no_content
+  #  visit '/signup'
+  #  assert page.has_no_content?('DOESNOT EXIST'), "Sign up path failed"
+  #end
 
   def test_signin_and_tweet
     visit '/login'
