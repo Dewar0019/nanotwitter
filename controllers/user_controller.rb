@@ -52,4 +52,14 @@ class UserController < ApplicationController
     Follow.destroy(follow.id)
     redirect "/users/#{params[:id]}"
   end
+
+  get '/users/:id/favorites' do
+    @tweets = Favorite.recent(50, user)
+    erb :favorites
+  end
+
+  get '/users/:id/retweets' do
+    @tweets = Retweet.recent(50, user)
+    erb :retweets
+  end
 end

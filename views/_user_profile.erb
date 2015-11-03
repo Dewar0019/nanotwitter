@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 text-center">
+    <div class="col-md-2">
       <a href=<%= "/users/#{user.id}"%>><img class="img-responsive" id="avatar" src=<%= gravatar_url(user) %>>
       <br>
       <%= link_to(user.name, request.path_info) %>
@@ -11,7 +11,7 @@
     <div class="col-md-1 text-center">
       Tweets
       <br>
-      <span id="" class="badge"><%= link_to("#{user.tweets_count}", "/users/#{user.id}") %></span>
+      <%= link_to("#{user.tweets_count}", "/users/#{user.id}") %></span>
     </div>
 
     <div class="col-md-1 text-center">
@@ -23,6 +23,18 @@
       Followers
       <br>
       <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
+    </div>
+
+    <div class="col-md-1 text-center">
+      Retweets
+      <br>
+      <%= link_to("#{user.retweets.count}", "/users/#{user.id}/retweets") %>
+    </div>
+
+    <div class="col-md-1 text-center">
+      Favorites
+      <br>
+      <%= link_to("#{user.favorites.count}", "/users/#{user.id}/favorites") %>
     </div>
 
     <div class="col-md-1 text-center">
