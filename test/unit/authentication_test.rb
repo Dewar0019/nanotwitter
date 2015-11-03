@@ -9,6 +9,11 @@ class AuthenticationTest < MiniTest::Test
 
   include Capybara::DSL
 
+  def setup 
+    User.destroy_all
+    User.new(:user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892").save
+  end
+
   def test_signup_with_blank_fields
     visit '/signup'
     click_button('Submit')
