@@ -8,14 +8,14 @@ gem 'faker'
 gem 'fabrication'
 gem 'bcrypt'
 gem 'sinatra-flash'
-gem 'minitest'
-gem 'rack-test'
-gem 'capybara'
-gem 'minitest-capybara'
 
 group :development do
   gem 'pry-byebug'
   gem 'sqlite3'
+  gem 'minitest'
+  gem 'rack-test'
+  gem 'capybara'
+  gem 'minitest-capybara'
 end
 
 group :production do
