@@ -10,7 +10,8 @@ class TestController < ApplicationController
     test_user = User.find_by_user_name("test_user")
     test_user.destroy if test_user
 
-    test_user = User.create(test_params)
+    test_user = User.new(test_params)
+    test_user.save
 
     redirect "/users/#{test_user.id}"
   end
@@ -38,3 +39,4 @@ class TestController < ApplicationController
     redirect "/users/#{test_user.id}"
   end
 end
+

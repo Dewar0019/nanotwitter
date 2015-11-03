@@ -3,13 +3,11 @@ require_relative '../../app.rb'
 require_relative '../helpers/test_helper.rb'
 
 
-class MyTest < MiniTest::Test
+class AuthenticationTest < MiniTest::Test
 
   include Rack::Test::Methods
 
   include Capybara::DSL
-
-
 
   def test_signup_with_blank_fields
     visit '/signup'

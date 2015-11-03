@@ -14,7 +14,6 @@ class MyTest < MiniTest::Test
     assert page.has_no_content?('NOTACONTENT'), "home page path failed"
   end
 
-
   def test_root_path_signup
     visit '/signup'
     assert page.has_content?('Sign up'), "Sign up path failed"
