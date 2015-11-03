@@ -2,15 +2,15 @@
 
 [ ![Codeship Status for Dewar0019/nanotwitter](https://codeship.com/projects/be61e600-634a-0133-dbbe-16f6a7024b95/status?branch=master)](https://codeship.com/projects/112764)
 
-This is our Nano version of Twitter we are building for COSI 105B: Software Development for Scability instructed by Pito Salas
+This is a nano version of Twitter we are building for [COSI 105B: Software Development for Scability](http://bit.ly/cosi105b-2015) instructed by Pito Salas at Brandeis University.
 
-
+Check it out at [http://smalltwitter.herokuapp.com/](http://smalltwitter.herokuapp.com/)
 
 ### Team Members
-* Shraddha Basnyat
-* Viet Le
-* Subahu Rayamajhi
-* Dewar Tan
+* [Shraddha Basnyat](https://github.com/sbasnyat)
+* [Viet Le](https://github.com/lttviet)
+* [Subahu Rayamajhi](https://github.com/subahur)
+* [Dewar Tan](https://github.com/Dewar0019)
 
 # How to run app
 
@@ -21,7 +21,7 @@ This is our Nano version of Twitter we are building for COSI 105B: Software Deve
 $ bundle install
 ```
 
-#### Starting the app
+#### Starting the app locally
 ```sh
 $ rackup -p 4567
 ```
