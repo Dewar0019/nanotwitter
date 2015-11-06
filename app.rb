@@ -14,6 +14,14 @@ require_all './models'
 require_all './controllers'
 
 class NanoTwitter < Sinatra::Base
+  use Rack::Deflater
+  use Rack::Session::Cookie, :key => 'rack.session',
+                             :path => '/',
+                             :expire_after => 2592000, # In seconds
+                             :secret => 'super_secret'
+
+  after { ActiveRecord::Base.connection.close }
+
   use HomepageController
   use SessionController
   use TestController
