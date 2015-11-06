@@ -1,8 +1,7 @@
-require 'digest/md5'
 require './helpers/user_helper'
 
 class UserController < ApplicationController
-  helpers UserHelper
+  helpers Sinatra::UserHelpers
 
   get '/signup' do
     erb :signup

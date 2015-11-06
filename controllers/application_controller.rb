@@ -12,6 +12,6 @@ class ApplicationController < Sinatra::Base
 
   after { ActiveRecord::Base.connection.close }
 
-  helpers ApplicationHelper
+  helpers Sinatra::ApplicationHelpers
   register Sinatra::Flash
 end
