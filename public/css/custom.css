@@ -1,19 +1,21 @@
 
-.userprofile{
+.userprofile {
   position: absolute;
   z-index:1;
 }
 
+.linkto {
+  z-index:1;
+}
 .usernav {
-    position: relative;
-    z-index:-1;
-    width: 100%;
-    border: 10px solid white;
-    background-color: white;
+  position: relative;
+  width: 100%;
+  border: 10px solid white;
+  background-color: white;
 }
 
 .spacer {
-    margin-top: 100px; /* define margin as you see fit */
+  margin-top: 100px; /* define margin as you see fit */
 }
 
 body {

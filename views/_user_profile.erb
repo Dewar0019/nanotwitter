@@ -17,27 +17,27 @@
 </div>
 
 <div class = "col-md-12 usernav">
-  <div class="col-md-offset-3 col-md-1 text-center">
+  <div class="col-md-offset-3 col-md-1 text-center linkto">
     Tweets
     <br>
   <%= link_to("#{user.tweets_count}", "/users/#{user.id}") %></span>
 </div>
-<div class="col-md-1 text-center">
+<div class="col-md-1 text-center linkto">
   Following
   <br>
   <%= link_to("#{user.followings_count}", "/users/#{user.id}/followings") %>
 </div>
-<div class="col-md-1 text-center">
+<div class="col-md-1 text-center linkto">
   Followers
   <br>
   <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
 </div>
-<div class="col-md-1 text-center">
+<div class="col-md-1 text-center linkto">
   Retweets
   <br>
   <%= link_to("#{user.retweets.count}", "/users/#{user.id}/retweets") %>
 </div>
-<div class="col-md-1 text-center">
+<div class="col-md-1 text-center linkto">
   Favorites
   <br>
   <%= link_to("#{user.favorites.count}", "/users/#{user.id}/favorites") %>
