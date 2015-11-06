@@ -1,7 +1,7 @@
 
 <div class= "userprofile col-md-offset-1 col-md-2">
   <a href=<%= "/users/#{user.id}"%>><img class="img-responsive" id="avatar" src=<%= gravatar_url(user) %>>
-    <div class="col-md-offset-2 col-sm-3">
+    <div class="col-md-offset-2 col-sm-10">
       <%= link_to(user.name, request.path_info) %>
       <br>
       @<%= user.user_name %>
@@ -46,13 +46,13 @@
 <div class="col-md-1 text-center">
   <% if login? and !current_user?(user) %>
     <% if Follow.follow?(current_user, user) %>
-    <form action=<%= "/users/#{user.id}/followers/delete" %> method="post">
-      <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
-    </form>
-    <% else %>
-    <form action=<%= request.path_info + "/followers/new" %> method="post">
-      <button type="submit" class="btn btn-primary">Follow</button>
-    </form>
+      <form action=<%= "/users/#{user.id}/followers/delete" %> method="post">
+        <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
+      </form>
+      <% else %>
+      <form action=<%= request.path_info + "/followers/new" %> method="post">
+        <button type="submit" class="btn btn-primary">Follow</button>
+      </form>
     <% end %>
   <% end %>
   </div>
@@ -64,7 +64,7 @@
   <div class="span4">...</div>
 </div>
 
-<div class="container">
+<div class="container rest_page">
   <div>
     <% if login? and current_user?(user )%>
       <%= erb :_tweets_new %>
