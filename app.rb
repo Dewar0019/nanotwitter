@@ -13,8 +13,6 @@ require 'require_all'
 require_all './models'
 require_all './controllers'
 
-
-
 class NanoTwitter < Sinatra::Base
   use HomepageController
   use SessionController
