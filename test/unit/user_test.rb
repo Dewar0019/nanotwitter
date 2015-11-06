@@ -1,11 +1,11 @@
-require_relative '../../app.rb' 
+require_relative '../../app.rb'
 require_relative '../helpers/test_helper.rb'
 
 class UserTest < MiniTest::Test
 
   include Rack::Test::Methods
 
-  def setup 
+  def setup
     User.destroy_all
   end
 
@@ -16,13 +16,13 @@ class UserTest < MiniTest::Test
   end
 
   def test_user_need_unique_email
-    User.new(:user_name=>"u1", :email=>"u1@test.com", :password=>"password").save
+    User.create(:name => "u1", :user_name=>"u1", :email=>"u1@test.com", :password=>"password")
     user = User.new(:user_name=>"u2", :email=>"u1@test.com", :password=>"password")
     assert !user.save, "email uniqueness failed"
   end
 
   def test_user_need_unique_user_name
-    User.new(:user_name=>"u1", :email=>"u1@test.com", :password=>"password").save
+    User.create(:user_name=>"u1", :email=>"u1@test.com", :password=>"password")
     user = User.new(:user_name=>"u1", :email=>"u2@test.com", :password=>"password")
     assert !user.save, "user_name uniqueness failed"
   end

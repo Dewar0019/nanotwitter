@@ -1,7 +1,6 @@
 # test.rb
-require_relative '../../app.rb' 
+require_relative '../../app.rb'
 require_relative '../helpers/test_helper.rb'
-
 
 class AuthenticationTest < MiniTest::Test
 
@@ -9,9 +8,9 @@ class AuthenticationTest < MiniTest::Test
 
   include Capybara::DSL
 
-  def setup 
+  def setup
     User.destroy_all
-    User.new(:user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892").save
+    User.create(:name => "testuser892", :user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892")
   end
 
   def test_signup_with_blank_fields
@@ -22,9 +21,10 @@ class AuthenticationTest < MiniTest::Test
 
   def test_signup_with_already_existing_user
     visit '/signup'
+    page.fill_in 'name', :with =>"test"
     page.fill_in 'user_name', :with => 'testuser892'
     page.fill_in 'email', :with => 'testuser892@test.com'
-    page.fill_in 'password', :with => 'testuser892' 
+    page.fill_in 'password', :with => 'testuser892'
     click_button('Submit')
     assert page.has_content?('Error in signup'), "Test failed, Sign up with already existing user and email should not work"
   end

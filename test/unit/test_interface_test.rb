@@ -1,6 +1,5 @@
-require_relative '../../app.rb' 
+require_relative '../../app.rb'
 require_relative '../helpers/test_helper.rb'
-
 
 class TestInterfaceTest < MiniTest::Test
 

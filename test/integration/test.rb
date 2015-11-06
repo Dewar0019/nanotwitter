@@ -1,8 +1,6 @@
 # test.rb
-require_relative '../../app.rb' 
+require_relative '../../app.rb'
 require_relative '../helpers/test_helper.rb'
-
-
 
 class MyTest < MiniTest::Test
 
@@ -10,16 +8,16 @@ class MyTest < MiniTest::Test
 
   include Capybara::DSL
 
-  def setup 
+  def setup
     User.destroy_all
     Tweet.destroy_all
     Follow.destroy_all
-    User.new(:user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892").save
-    User.new(:user_name=>"u2", :email=>"u2@test.com", :password=>"passwordu2").save
+    User.create(:name => "testuser892", :user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892")
+    User.create(:name => "u2", :user_name=>"u2", :email=>"u2@test.com", :password=>"passwordu2")
     @u1 = User.find_by_user_name("testuser892")
     @u2 = User.find_by_user_name("u2")
-    Follow.new(user_id: @u2.id, following_id: @u1.id).save
-    Tweet.new(user_id: @u1.id, text: "test tweet 892").save
+    Follow.create(user_id: @u2.id, following_id: @u1.id)
+    Tweet.create(user_id: @u1.id, text: "test tweet 892")
     @tweet = Tweet.find_by_text("test tweet 892")
   end
 
@@ -40,7 +38,7 @@ class MyTest < MiniTest::Test
 
   #def test_signin_and_tweet
   #  page.fill_in 'email', :with => 'testuser892@test.com'
-  #  page.fill_in 'password', :with => 'testuser892' 
+  #  page.fill_in 'password', :with => 'testuser892'
   #  click_button('Login')
   #  page.fill_in 'tweet', :with => 'new test tweet'
   #  click_button('Tweet')
@@ -51,11 +49,9 @@ class MyTest < MiniTest::Test
   def test_signin_posttweet_seen_in_followers_page
     visit '/login'
     page.fill_in 'email', :with => 'u2@test.com'
-    page.fill_in 'password', :with => 'passwordu2' 
+    page.fill_in 'password', :with => 'passwordu2'
     click_button('Login')
     visit '/'
     assert page.has_content?('892'), "Test failed, Tweet should post in followers homeage"
   end
-
-
 end
