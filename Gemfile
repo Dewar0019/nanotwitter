@@ -8,6 +8,7 @@ gem 'faker'
 gem 'fabrication'
 gem 'bcrypt'
 gem 'sinatra-flash'
+gem 'puma'
 
 group :development do
   gem 'pry-byebug'
