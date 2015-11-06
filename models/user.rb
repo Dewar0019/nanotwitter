@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :followings, class_name: 'Follow', foreign_key: 'user_id', dependent: :destroy
   has_many :followers, class_name: 'Follow', foreign_key: 'following_id', dependent: :destroy
 
+  validates :name, presence: true
   validates :user_name, :email,
     presence: true,
     uniqueness: { case_sensitive: false }
