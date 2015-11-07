@@ -18,6 +18,10 @@ configure :production do
   )
 end
 
-configure :development, :test do
-  puts "[develoment or test Environment]"
+configure :development do
+  puts "[develoment Environment]"
+end
+
+configure :test do
+  puts "[test Environment]"
 end
