@@ -1,4 +1,7 @@
-#\ -s puma
-require './app'
+require 'rubygems'
+require 'bundler'
 
+Bundler.require
+
+require './app'
 run NanoTwitter
