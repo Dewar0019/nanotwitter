@@ -19,12 +19,12 @@ Check it out at [http://smalltwitter.herokuapp.com/](http://smalltwitter.herokua
 #### Run bundle to install gems
 
 ```sh
-$ bundle install
+$ bundle install --without production:test
 ```
 
 #### Starting the app locally
 ```sh
-$ rackup -p 4567
+$ bundle exec rackup -p 4567
 ```
 
 Open your browser and go to url http://localhost:4567/
