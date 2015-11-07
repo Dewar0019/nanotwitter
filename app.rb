@@ -1,4 +1,9 @@
 require 'sinatra'
+
+configure :production do
+  require 'newrelic_rpm'
+end
+
 require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
