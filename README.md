@@ -19,7 +19,7 @@ Check it out at [http://smalltwitter.herokuapp.com/](http://smalltwitter.herokua
 #### Run bundle to install gems
 
 ```sh
-$ bundle install --without production:test
+$ bundle install
 ```
 
 #### Starting the app locally
