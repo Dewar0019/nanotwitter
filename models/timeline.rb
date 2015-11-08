@@ -6,8 +6,8 @@ class Timeline < ActiveRecord::Base
     ##
     # returns n recent tweets in an user's timeline
     def recent(n, user)
-      ids = Timeline.where(user: user).order(created_at: :desc).pluck(:tweet_id).first(n)
-      Tweet.includes(:user).where(id: ids)
+      ids = Timeline.where(user: user).pluck(:tweet_id)
+      Tweet.includes(:user).where(id: ids).order(created_at: :desc).first(n)
     end
   end
 end
