@@ -1,10 +1,10 @@
 class Tweet < ActiveRecord::Base
   belongs_to :user, counter_cache: true
 
-  has_many :favorites
-  has_many :retweets
-  has_many :replies
-  has_many :tweet_tags
+  has_many :favorites, dependent: :destroy
+  has_many :retweets, dependent: :destroy
+  has_many :replies, dependent: :destroy
+  has_many :tweet_tags, dependent: :destroy
 
   validates :text,
     presence: true,
