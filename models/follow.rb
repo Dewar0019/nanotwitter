@@ -4,6 +4,8 @@ class Follow < ActiveRecord::Base
     class_name: 'User',
     counter_cache: :followers_count
 
+  after_create :add_to_timeline_new_follower
+
   class << self
     ##
     # returns true if user1 follows user2
@@ -11,4 +13,14 @@ class Follow < ActiveRecord::Base
       !Follow.find_by(user_id: user1.id, following_id: user2.id).nil?
     end
   end
+
+  ##
+  # add exisiting tweets to a new follower
+  def add_to_timeline_new_follower
+    self.following.tweets.each do |t|
+      Timeline.create(user: user, tweet: t)
+    end
+  end
+
+  private :add_to_timeline_new_follower
 end
