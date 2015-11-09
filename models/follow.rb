@@ -1,8 +1,9 @@
 class Follow < ActiveRecord::Base
-  belongs_to :user, counter_cache: :followings_count
+  belongs_to :user, counter_cache: :followings_count, touch: true
   belongs_to :following,
     class_name: 'User',
-    counter_cache: :followers_count
+    counter_cache: :followers_count,
+    touch: true
 
   after_create :add_to_timeline_new_follower
 

@@ -1,3 +1,3 @@
 class Tag < ActiveRecord::Base
-  belongs_to :tweet
+  belongs_to :tweet, touch: true
 end
