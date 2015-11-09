@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151031050015) do
+ActiveRecord::Schema.define(version: 20151109032603) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer  "tweet_id"
@@ -53,6 +53,15 @@ ActiveRecord::Schema.define(version: 20151031050015) do
   add_index "retweets", ["tweet_id"], name: "index_retweets_on_tweet_id"
   add_index "retweets", ["user_id"], name: "index_retweets_on_user_id"
 
+  create_table "tags", force: :cascade do |t|
+    t.integer  "tweet_id"
+    t.string   "tag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tags", ["tweet_id"], name: "index_tags_on_tweet_id"
+
   create_table "timelines", force: :cascade do |t|
     t.integer  "tweet_id"
     t.integer  "user_id"
@@ -62,15 +71,6 @@ ActiveRecord::Schema.define(version: 20151031050015) do
 
   add_index "timelines", ["tweet_id"], name: "index_timelines_on_tweet_id"
   add_index "timelines", ["user_id"], name: "index_timelines_on_user_id"
-
-  create_table "tweet_tags", force: :cascade do |t|
-    t.integer  "tweet_id"
-    t.string   "tag"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "tweet_tags", ["tweet_id"], name: "index_tweet_tags_on_tweet_id"
 
   create_table "tweets", force: :cascade do |t|
     t.integer  "user_id"

@@ -1,6 +1,6 @@
-class CreateTweetTag < ActiveRecord::Migration
+class CreateTag < ActiveRecord::Migration
   def change
-    create_table :tweet_tags do |t|
+    create_table :tags do |t|
       t.belongs_to :tweet, index: true
       t.string :tag
 
@@ -9,6 +9,6 @@ class CreateTweetTag < ActiveRecord::Migration
   end
 
   def down
-    drop_table :tweet_tags
+    drop_table :tags
   end
 end
