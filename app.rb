@@ -1,12 +1,11 @@
 require 'sinatra'
-require 'newrelic_rpm'
 require 'sinatra/base'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 
 require 'rake/testtask'
 
-require './config/environments' # database configuration
+require './config/environments'
 
 require 'tilt/erb'
 
@@ -19,9 +18,10 @@ class NanoTwitter < Sinatra::Base
   use Rack::Session::Cookie, :key => 'rack.session',
                              :path => '/',
                              :expire_after => 2592000, # In seconds
-                             :secret => 'super_secret'
+                             :secret => ENV['SECRET'] || 'super_secret'
 
   after { ActiveRecord::Base.connection.close }
+
 
   use HomepageController
   use SessionController
