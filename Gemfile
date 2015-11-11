@@ -5,14 +5,22 @@ ruby '2.2.3'
 gem 'sinatra', '>=1.4.6'
 gem 'sinatra-flash', '>=0.3.0'
 gem 'sinatra-activerecord', '>=2.0.9'
-gem 'require_all', '>=1.3.3'
-gem 'fabrication', '>=2.14.1'
-gem 'bcrypt', '>=3.1.10'
-gem 'hiredis', '>=0.6.0'
-gem 'readthis', '>=1.0'
-gem 'redis', '>= 3.2.1'
-gem 'faker', '>=1.5.0'
+gem 'sinatra-partial', '>=0.4.0'
 gem 'rake', '>=10.4.2'
+
+gem 'require_all', '>=1.3.3'
+
+gem 'fabrication', '>=2.14.1'
+gem 'faker', '>=1.5.0'
+
+gem 'bcrypt', '>=3.1.10'
+
+gem 'redis', '>= 3.2.1'
+gem 'hiredis', '>=0.6.0'
+gem 'redis-rack-cache', '>=1.2.2'
+gem 'rack-cache', '>=1.5.1'
+gem 'readthis', '>=1.0'
+
 gem 'puma', '>=2.15.2'
 
 group :development do
@@ -21,7 +29,6 @@ end
 
 group :test do
   gem 'minitest-capybara', '>=0.7.2'
-  gem 'pry-byebug', '>=3.3.0'
   gem 'rack-test', '>=0.6.3'
   gem 'minitest', '>=5.8.2'
   gem 'capybara', '>=2.5.0'
