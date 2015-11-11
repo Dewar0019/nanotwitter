@@ -1,38 +1,21 @@
-<div class="container">
-  <% @tweets.each do |tweet| %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <b><%= link_to(tweet.user.name, "/users/#{tweet.user.id}") %></b>
-        <small>
-          @<%= tweet.user.user_name %></a>
-        </small>
-        .
-        <%= tweet.pretty_print_date %>
+<% if login? %>
+  <% cache("timeline/" + current_user.cache_key) do %>
+    <div class="container">
+      <% @tweets.each do |tweet| %>
+        <%= partial :_tweet, :locals => { tweet: tweet } %>
+      <% end %>
+
       <br>
-      </div>
-
-      <div class="panel-body">
-        <%= h tweet.text %><br><br>
-        <div class="row">
-          <div class="col-md-2">
-            <form action=<%= "/tweets/#{tweet.id}/retweet" %> method="post">
-              <button class="btn btn-default" type="submit">
-                <i class="fa fa-retweet"></i> <%= tweet.retweets_count %>
-              </button>
-            </form>
-          </div>
-
-          <div class="col-md-2">
-            <form action=<%= "/tweets/#{tweet.id}/favorite" %> method="post">
-              <button class="btn btn-default" type="submit">
-                <i class="fa fa-star"></i> <%= tweet.favorites_count %>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
     </div>
-
-  <br>
   <% end %>
-</div>
+<% else %>
+  <% cache("list/" + Tweet.order(updated_at: :desc).first.cache_key) do %>
+    <div class="container">
+      <% @tweets.each do |tweet| %>
+        <%= partial :_tweet, :locals => { tweet: tweet } %>
+      <% end %>
+
+      <br>
+    </div>
+  <% end %>
+<% end %>
