@@ -20,9 +20,9 @@ class UserController < ApplicationController
 
   get '/users/:id' do
     if current_user?(user)
-      @tweets = Timeline.recent(50, current_user)
+      @tweets = Timeline.recent(100, current_user)
     else
-      @tweets = Tweet.recent(50, user)
+      @tweets = Tweet.recent(100, user)
     end
     erb :users
   end
