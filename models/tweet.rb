@@ -1,4 +1,4 @@
-require './helpers/cache_helper'
+require './helpers/database_cache_helper'
 
 class Tweet < ActiveRecord::Base
   belongs_to :user, counter_cache: true, touch: true
@@ -18,14 +18,15 @@ class Tweet < ActiveRecord::Base
     ##
     # returns n recent tweets by user
     # if user is nil, returns n recent tweets
-    include Sinatra::CacheHelpers
+    include DatabaseCacheHelpers
     def recent(n, user = nil)
       if user.nil?
-        cache.fetch(Tweet.last) do
+        t = Tweet.order(updated_at: :desc).first
+        my_cache.fetch(t) do
           Tweet.includes(:user).order(created_at: :desc).first(n)
         end
       else
-        cache.fetch(user) do
+        my_cache.fetch(user) do
           Tweet.includes(:user).where(user: user).order(created_at: :desc).first(n)
         end
       end
