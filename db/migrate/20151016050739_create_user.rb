@@ -9,6 +9,8 @@ class CreateUser < ActiveRecord::Migration
       t.integer :tweets_count, default: 0
       t.integer :followers_count, default: 0
       t.integer :followings_count, default: 0
+      t.integer :retweets_count, default: 0
+      t.integer :favorites_count, default: 0
 
       t.timestamps null: false
     end

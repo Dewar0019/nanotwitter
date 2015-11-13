@@ -35,12 +35,12 @@
 <div class="col-md-1 text-center linkto">
   Retweets
   <br>
-  <%= link_to("#{user.retweets.count}", "/users/#{user.id}/retweets") %>
+  <%= link_to("#{user.retweets_count}", "/users/#{user.id}/retweets") %>
 </div>
 <div class="col-md-1 text-center linkto">
   Favorites
   <br>
-  <%= link_to("#{user.favorites.count}", "/users/#{user.id}/favorites") %>
+  <%= link_to("#{user.favorites_count}", "/users/#{user.id}/favorites") %>
 </div>
 
 <div class="col-md-1 text-center">

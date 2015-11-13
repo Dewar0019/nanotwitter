@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 20151109032603) do
     t.integer  "tweets_count",     default: 0
     t.integer  "followers_count",  default: 0
     t.integer  "followings_count", default: 0
+    t.integer  "retweets_count",   default: 0
+    t.integer  "favorites_count",  default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end

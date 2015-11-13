@@ -1,5 +1,5 @@
 class Retweet < ActiveRecord::Base
-  belongs_to :user, touch: true
+  belongs_to :user, counter_cache: true, touch: true
   belongs_to :tweet, counter_cache: true, touch: true
 
   class << self
