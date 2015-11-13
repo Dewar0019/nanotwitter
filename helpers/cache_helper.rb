@@ -15,8 +15,9 @@ module Sinatra
       if my_cache.exist?(name)
         @_out_buf << my_cache.read(name)
       else
+        pos = @_out_buf.length
         temp = block.call
-        my_cache.write(name, temp)
+        my_cache.write(name, temp[pos..-1])
         temp
       end
     end
