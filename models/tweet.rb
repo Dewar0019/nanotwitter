@@ -14,6 +14,8 @@ class Tweet < ActiveRecord::Base
 
   after_create :add_to_timeline_self, :add_to_timeline_followers
 
+  scope :most_recent_updated, -> { order(updated_at: :desc).first }
+
   class << self
     include DatabaseCacheHelpers
 
@@ -22,8 +24,7 @@ class Tweet < ActiveRecord::Base
     # if user is nil, returns n recent tweets
     def recent(n, user = nil)
       if user.nil?
-        t = Tweet.order(updated_at: :desc).first
-        my_cache.fetch(t) do
+        my_cache.fetch(Tweet.most_recent_updated) do
           Tweet.includes(:user).order(created_at: :desc).first(n)
         end
       else
