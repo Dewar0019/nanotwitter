@@ -5,7 +5,6 @@ ruby '2.2.3'
 gem 'sinatra', '>=1.4.6'
 gem 'sinatra-flash', '>=0.3.0'
 gem 'sinatra-activerecord', '>=2.0.9'
-gem 'sinatra-partial', '>=0.4.0'
 gem 'rake', '>=10.4.2'
 
 gem 'require_all', '>=1.3.3'
