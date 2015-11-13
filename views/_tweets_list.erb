@@ -1,21 +1,6 @@
-<% if login? %>
-  <% cache("timeline/" + current_user.cache_key) do %>
-    <div class="container">
-      <% @tweets.each do |tweet| %>
-        <%= partial :_tweet, :locals => { tweet: tweet } %>
-      <% end %>
-
-      <br>
-    </div>
+<div class="container">
+  <% @tweets.each do |tweet| %>
+    <%= erb :_tweet, :locals => { tweet: tweet } %>
   <% end %>
-<% else %>
-  <% cache("list/" + Tweet.order(updated_at: :desc).first.cache_key) do %>
-    <div class="container">
-      <% @tweets.each do |tweet| %>
-        <%= partial :_tweet, :locals => { tweet: tweet } %>
-      <% end %>
-
-      <br>
-    </div>
-  <% end %>
-<% end %>
+  <br>
+</div>

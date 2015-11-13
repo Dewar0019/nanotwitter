@@ -1,3 +1,13 @@
 <%= erb :_user_profile %>
 
-<%= erb :_tweets_list %>
+<%= erb :_tweets_new %>
+
+<% if login? and current_user?(user) %>
+  <% cache timeline_cache_key do %>
+    <%= erb :_tweets_list %>
+  <% end %>
+<% else %>
+  <% cache(user_tweets_list_cache_key) do %>
+    <%= erb :_tweets_list %>
+  <% end %>
+<% end %>

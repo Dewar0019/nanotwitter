@@ -1,11 +1,11 @@
-<div class="container">
-  <% if login? %>
-    <%= erb :_tweets_new %>
+<%= erb :_tweets_new %>
+
+<% if login? %>
+  <% cache timeline_cache_key do %>
+    <%= erb :_tweets_list %>
   <% end %>
-
-
-  <br>
-</div>
-
-<%= erb :_tweets_list %>
-
+<% else %>
+  <% cache recent_tweets_list_cache_key do %>
+    <%= erb :_tweets_list %>
+  <% end %>
+<% end %>

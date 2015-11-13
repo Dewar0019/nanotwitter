@@ -1,3 +1,5 @@
 <%= erb :_user_profile %>
 
-<%= erb :_tweets_list %>
+<% cache favorites_list_cache_key do %>
+  <%= erb :_tweets_list %>
+<% end %>
