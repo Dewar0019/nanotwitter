@@ -22,5 +22,35 @@ module Sinatra
         "Error"
       end
     end
+
+    ##
+    # returns cache key for logged in user's timeline
+    def timeline_cache_key
+      "timeline/" + current_user.cache_key
+    end
+
+    ##
+    # return cache key for 100 recent tweets list
+    def recent_tweets_list_cache_key
+      "list/" + Tweet.most_recent_updated.cache_key
+    end
+
+    ##
+    # return cache key for tweet list created by user
+    def user_tweets_list_cache_key
+      "list/" + user.cache_key
+    end
+
+    ##
+    # return cache key for retweets list by user
+    def retweets_list_cache_key
+      "retweet/" + user.cache_key
+    end
+
+    ##
+    # return cache key for favorites list by user
+    def favorites_list_cache_key
+      "favorite/" + user.cache_key
+    end
   end
 end

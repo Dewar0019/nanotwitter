@@ -1,7 +1,9 @@
+require './helpers/tweet_helper'
 require './helpers/user_helper'
 
 class UserController < ApplicationController
   helpers Sinatra::UserHelpers
+  helpers Sinatra::TweetHelpers
 
   get '/signup' do
     erb :signup

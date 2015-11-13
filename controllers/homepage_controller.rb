@@ -8,7 +8,7 @@ class HomepageController < ApplicationController
       @tweets = Timeline.recent(100, current_user)
     else
       @tweets = Tweet.recent(100)
-      t = Tweet.order(updated_at: :desc).first
+      t = Tweet.most_recent_updated
       last_modified t.updated_at
       etag Digest::MD5.hexdigest(t.cache_key)
     end
