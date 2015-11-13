@@ -15,10 +15,11 @@ class Tweet < ActiveRecord::Base
   after_create :add_to_timeline_self, :add_to_timeline_followers
 
   class << self
+    include DatabaseCacheHelpers
+
     ##
     # returns n recent tweets by user
     # if user is nil, returns n recent tweets
-    include DatabaseCacheHelpers
     def recent(n, user = nil)
       if user.nil?
         t = Tweet.order(updated_at: :desc).first
