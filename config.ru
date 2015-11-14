@@ -6,7 +6,7 @@ Bundler.require
 use Rack::Deflater
 use Rack::Session::Cookie, :key => 'rack.session',
                            :path => '/',
-                           :expire_after => 2592000, # In seconds
+                           :expire_after => 600, # 10 mins
                            :secret => ENV['SECRET'] || 'super_secret'
 
 redis_url = ENV['REDIS_URL'] || 'redis://localhost:6379'
