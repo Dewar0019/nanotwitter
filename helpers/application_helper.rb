@@ -48,5 +48,17 @@ module Sinatra
       flash[:notice] = "Please login or signup"
       redirect '/login'
     end
+
+    ##
+    # set last_modified header for a webpage
+    def set_last_modified(obj)
+      last_modified obj.updated_at
+    end
+
+    ##
+    # set etag header for a webpage
+    def set_etag(obj)
+      etag Digest::MD5.hexdigest(obj.cache_key)
+    end
   end
 end
