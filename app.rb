@@ -7,7 +7,8 @@ require 'rake/testtask'
 
 require './config/environments'
 
-require 'tilt/erb'
+require 'erubis'
+require 'tilt/erubis'
 
 require 'require_all'
 require_all './models'

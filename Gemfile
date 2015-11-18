@@ -6,6 +6,7 @@ gem 'sinatra', '>=1.4.6'
 gem 'sinatra-flash', '>=0.3.0'
 gem 'sinatra-activerecord', '>=2.0.9'
 gem 'rake', '>=10.4.2'
+gem 'erubis'
 
 gem 'require_all', '>=1.3.3'
 
