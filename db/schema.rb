@@ -81,6 +81,8 @@ ActiveRecord::Schema.define(version: 20151109032603) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_index "tweets", ["created_at"], name: "index_tweets_on_created_at"
+  add_index "tweets", ["updated_at"], name: "index_tweets_on_updated_at"
   add_index "tweets", ["user_id"], name: "index_tweets_on_user_id"
 
   create_table "users", force: :cascade do |t|

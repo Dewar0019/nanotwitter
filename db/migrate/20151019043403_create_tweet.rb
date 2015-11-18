@@ -6,7 +6,7 @@ class CreateTweet < ActiveRecord::Migration
       t.integer :retweets_count, default: 0
       t.integer :favorites_count, default: 0
 
-      t.timestamps null: false
+      t.timestamps null: false, index: true
     end
   end
 
