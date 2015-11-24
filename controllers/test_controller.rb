@@ -1,33 +1,30 @@
-require 'fabrication'
 require './helpers/test_helper'
+require './lib/workers/create_testuser_worker'
+require './lib/workers/seed_worker'
+require './lib/workers/seed_tweet_worker'
+require './lib/workers/seed_following_worker'
 
 class TestController < ApplicationController
   helpers Sinatra::TestHelpers
 
   get '/test/reset' do
-    test_user.destroy if test_user
-    create_new_test_user()
-    redirect "/users/#{test_user.id}"
+    CreateTestuserWorker.perform_async
+    redirect '/sidekiq'
   end
 
   get '/test/seed/:number' do
-    params[:number].to_i.times { Fabricate(:user) }
-    redirect '/'
+    SeedWorker.perform_async(params[:number].to_i)
+    redirect '/sidekiq'
   end
 
   get '/test/tweets/:number' do
-    params[:number].to_i.times { Fabricate(:tweet, user_id: test_user.id) }
-
-    redirect "/users/#{test_user.id}"
+    SeedTweetWorker.perform_async(params[:number].to_i)
+    redirect '/sidekiq'
   end
 
   get '/test/follow/:number' do
-    followings = ( User.ids - [ test_user.id ] ).sample( params[:number].to_i  )
-    followings.each do |f|
-      Follow.create(user_id: f, following_id: test_user.id)
-    end
-
-    redirect "/users/#{test_user.id}"
+    SeedFollowingWorker.perform_async(params[:number].to_i)
+    redirect '/sidekiq'
   end
 end
 
