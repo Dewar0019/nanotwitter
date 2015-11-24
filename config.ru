@@ -1,7 +1,8 @@
-require 'rubygems'
 require 'bundler'
-
 Bundler.require
+
+require './app'
+require 'sidekiq/web'
 
 use Rack::Deflater
 use Rack::Session::Cookie, :key => 'rack.session',
@@ -15,5 +16,4 @@ use Rack::Cache,
   metastore: redis_url,
   entitystore: redis_url
 
-require './app'
-run NanoTwitter
+run Rack::URLMap.new('/' => NanoTwitter, '/sidekiq' => Sidekiq::Web)

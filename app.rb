@@ -1,16 +1,10 @@
-require 'sinatra'
-require 'sinatra/base'
-require 'sinatra/activerecord'
-require 'sinatra/flash'
-
-require 'rake/testtask'
+require 'bundler'
+Bundler.require
 
 require './config/environments'
 
-require 'erubis'
 require 'tilt/erubis'
 
-require 'require_all'
 require_all './models'
 require_all './controllers'
 
@@ -32,7 +26,4 @@ class NanoTwitter < Sinatra::Base
   error 500 do
     "Internal error"
   end
-
-  # start the server if ruby file executed directly
-  run! if app_file == $0
 end

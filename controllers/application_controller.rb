@@ -1,4 +1,3 @@
-require 'sinatra/base'
 require './helpers/application_helper'
 require './helpers/cache_helper'
 
