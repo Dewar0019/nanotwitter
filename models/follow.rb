@@ -13,6 +13,24 @@ class Follow < ActiveRecord::Base
     def follow?(user1, user2)
       !Follow.find_by(user_id: user1.id, following_id: user2.id).nil?
     end
+
+    ##
+    # returns all users who user1 follows
+    def get_followings(user1)
+      $redis2.fetch("followings/#{user1.cache_key}") do
+        ids = Follow.where(user: user1).pluck(:following_id)
+        User.where(id: ids)
+      end
+    end
+
+    ##
+    # returns all users who are followers of user1
+    def get_followers(user1)
+      $redis2.fetch("followers/#{user1.cache_key}") do
+        ids = Follow.where(following: user1).pluck(:user_id)
+        User.where(id: ids)
+      end
+    end
   end
 
   ##

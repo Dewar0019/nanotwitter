@@ -1,19 +1,11 @@
 <%= erb :_user_profile %>
 
-<br>
+<% cache followings_list_cache_key do %>
 <div class="container">
   <div class="row">
-    <% user.followings.each do |f| %>
-    <div class="col-sm-6 col-md-4">
-      <div class="thumbnail">
-        <div class="caption">
-          <h3>   <%= link_to(f.following.name, "/users/#{f.following.id}") %></h3>
-          <p> <%= f.following.user_name %> </p>
-
-        </div>
-      </div>
-    </div>
-      <% end %>
+     <% @users.each do |u| %>
+      <%= erb :_user, :locals => { u: u } %>
+    <% end %>
   </div>
 </div>
-
+<% end %>

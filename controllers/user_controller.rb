@@ -30,10 +30,12 @@ class UserController < ApplicationController
   end
 
   get '/users/:id/followings' do
+    @users = Follow.get_followings(user)
     erb :followings
   end
 
   get '/users/:id/followers' do
+    @users = Follow.get_followers(user)
     erb :followers
   end
 
