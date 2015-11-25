@@ -18,5 +18,7 @@ class SeedFollowingWorker
     ActiveRecord::Base.connection.execute(
       "INSERT INTO follows (#{columns.join(',')}) VALUES #{values.join(',')}"
     )
+
+    test_user.increment!(:followers_count, number)
   end
 end

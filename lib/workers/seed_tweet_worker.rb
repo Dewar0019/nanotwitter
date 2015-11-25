@@ -18,5 +18,7 @@ class SeedTweetWorker
     ActiveRecord::Base.connection.execute(
       "INSERT INTO tweets (#{columns.join(',')}) VALUES #{values.join(',')}"
     )
+
+    test_user.increment!(:tweets_count, number)
   end
 end
