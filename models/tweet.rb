@@ -1,5 +1,3 @@
-require './helpers/database_cache_helper'
-
 class Tweet < ActiveRecord::Base
   belongs_to :user, counter_cache: true, touch: true
 
@@ -17,18 +15,16 @@ class Tweet < ActiveRecord::Base
   scope :most_recent_updated, -> { order(updated_at: :desc).first }
 
   class << self
-    include DatabaseCacheHelpers
-
     ##
     # returns n recent tweets by user
     # if user is nil, returns n recent tweets
     def recent(n, user = nil)
       if user.nil?
-        my_cache.fetch(Tweet.most_recent_updated) do
+        $redis2.fetch(Tweet.most_recent_updated) do
           Tweet.includes(:user).order(created_at: :desc).first(n)
         end
       else
-        my_cache.fetch(user) do
+        $redis2.fetch(user) do
           Tweet.includes(:user).where(user: user).order(created_at: :desc).first(n)
         end
       end

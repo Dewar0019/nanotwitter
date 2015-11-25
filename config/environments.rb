@@ -1,5 +1,20 @@
+# redis1 used for fragment caching
+url1 = ENV['REDIS_URL'] || 'redis://localhost:6379'
+$redis1 = Readthis::Cache.new(
+  expires_in: 2.weeks.to_i,
+  redis: { url: url1, driver: :hiredis }
+)
+
+# redis2 used for database query caching
+url2 = ENV['HEROKU_REDIS_JADE_URL'] || 'redis://localhost:6379/2'
+$redis2 = Readthis::Cache.new(
+  expires_in: 2.weeks.to_i,
+  redis: { url: url2, driver: :hiredis }
+)
+
 configure :production do
   require 'newrelic_rpm'
+
   puts "[production environment]"
 
   db = URI.parse(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
