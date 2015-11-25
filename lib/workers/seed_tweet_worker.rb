@@ -1,18 +1,22 @@
 require './helpers/test_helper'
-require "activerecord-import/base"
 
 class SeedTweetWorker
   include Sidekiq::Worker
   include Sinatra::TestHelpers
 
   def perform(number)
-    columns = [:user_id, :text]
-
+    columns = [:user_id, :text, :created_at, :updated_at]
     values = []
+
     number.times do
-      values << [test_user.id, Faker::Company.catch_phrase]
+      values << %Q[
+        (#{test_user.id}, "#{Faker::Company.catch_phrase}",
+        CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+      ]
     end
 
-    Tweet.import columns, values
+    ActiveRecord::Base.connection.execute(
+      "INSERT INTO tweets (#{columns.join(',')}) VALUES #{values.join(',')}"
+    )
   end
 end

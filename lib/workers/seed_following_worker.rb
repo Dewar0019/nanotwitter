@@ -1,20 +1,22 @@
 require './helpers/test_helper'
-require "activerecord-import/base"
 
 class SeedFollowingWorker
   include Sidekiq::Worker
   include Sinatra::TestHelpers
 
   def perform(number)
-    columns = [:user_id, :following_id]
+    columns = [:user_id, :following_id, :created_at, :updated_at]
     values = []
 
     followings = ( User.ids - [ test_user.id ] ).sample( number )
-
     followings.each do |f|
-      values << [f, test_user.id]
+      values << %Q[
+        (#{f}, #{test_user.id}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+      ]
     end
 
-    Follow.import columns, values
+    ActiveRecord::Base.connection.execute(
+      "INSERT INTO follows (#{columns.join(',')}) VALUES #{values.join(',')}"
+    )
   end
 end
