@@ -6,8 +6,10 @@ class Retweet < ActiveRecord::Base
     ##
     # returns n recent retweets by user
     def recent(n, user)
-      ids = Retweet.where(user: user).order(created_at: :desc).pluck(:tweet_id).first(n)
-      Tweet.includes(:user).where(id: ids).order(created_at: :desc)
+      $redis2.fetch("retweet/#{user.cache_key}") do
+        ids = Retweet.where(user: user).order(created_at: :desc).pluck(:tweet_id).first(n)
+        Tweet.includes(:user).where(id: ids).order(created_at: :desc)
+      end
     end
   end
 end

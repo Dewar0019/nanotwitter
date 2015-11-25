@@ -6,8 +6,10 @@ class Favorite < ActiveRecord::Base
     ##
     # returns n recent favorite tweets by user
     def recent(n, user)
-      ids = Favorite.where(user: user).order(created_at: :desc).pluck(:tweet_id).first(n)
-      Tweet.includes(:user).where(id: ids).order(created_at: :desc)
+      $redis2.fetch("favorite/#{user.cache_key}") do
+        ids = Favorite.where(user: user).order(created_at: :desc).pluck(:tweet_id).first(n)
+        Tweet.includes(:user).where(id: ids).order(created_at: :desc)
+      end
     end
   end
 end
