@@ -10,7 +10,7 @@ class SeedTweetWorker
 
     number.times do
       values << %Q[
-        (#{test_user.id}, "#{Faker::Company.catch_phrase}",
+        (#{test_user.id}, '#{Faker::Company.catch_phrase}',
         CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
       ]
     end

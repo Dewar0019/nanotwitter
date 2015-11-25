@@ -9,10 +9,10 @@ class SeedWorker
 
     number.times do
       values << %Q[
-        ("#{Faker::Name.name}",
-        "#{Faker::Internet.user_name}#{Faker::Number.number(3)}",
-        "#{Faker::Internet.email}", "#{Faker::Company.buzzword}",
-        "#{BCrypt::Password.create(Faker::Internet.password(8))}",
+        ('#{Faker::Name.name}',
+        '#{Faker::Internet.user_name}#{Faker::Number.number(3)}',
+        '#{Faker::Internet.email}', '#{Faker::Company.buzzword}',
+        '#{BCrypt::Password.create(Faker::Internet.password(8))}',
         CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
       ]
     end
