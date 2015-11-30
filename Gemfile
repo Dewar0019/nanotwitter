@@ -13,7 +13,6 @@ gem 'require_all', '>=1.3.3'
 
 gem 'fabrication', '>=2.14.1'
 gem 'faker', '>=1.5.0'
-gem 'activerecord-import', '~> 0.10.0'
 
 gem 'bcrypt', '>=3.1.10'
 
