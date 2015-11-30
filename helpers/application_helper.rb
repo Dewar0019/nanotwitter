@@ -60,5 +60,10 @@ module Sinatra
     def set_etag(obj)
       etag Digest::MD5.hexdigest(obj.cache_key)
     end
+
+    def search(search_term)
+        User.where("user_name like? OR email like?", "%#{search_term}%", "%#{search_term}%")
+    end
+
   end
 end
