@@ -67,5 +67,10 @@ module Sinatra
       end
     end
 
+    def search_cache_key(search_term)
+      search_term + "/" + User.most_recent_updated.cache_key
+    end
+
   end
 end
+
