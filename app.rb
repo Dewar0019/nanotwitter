@@ -19,11 +19,15 @@ class NanoTwitter < Sinatra::Base
     "The page you requested doesn't exist"
   end
 
-  error 404 do
+  error 404, ActiveRecord::RecordNotFound do
     not_found
   end
 
   error 500 do
     "Internal error"
+  end
+
+  error ActiveRecord::RecordNotFound do
+    not_found
   end
 end
