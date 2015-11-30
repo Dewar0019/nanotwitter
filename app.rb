@@ -26,8 +26,4 @@ class NanoTwitter < Sinatra::Base
   error 500 do
     "Internal error"
   end
-
-  error ActiveRecord::RecordNotFound do
-    not_found
-  end
 end
