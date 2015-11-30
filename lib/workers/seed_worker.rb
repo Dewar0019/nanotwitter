@@ -9,7 +9,7 @@ class SeedWorker
 
     number.times do
       values << %Q[
-        ('#{ActiveRecord::Base.connection.quote(Faker::Name.name)}',
+        (#{ActiveRecord::Base.connection.quote(Faker::Name.name)},
         '#{Faker::Internet.user_name}#{Faker::Number.number(3)}',
         '#{Faker::Internet.email}', '#{Faker::Company.buzzword}',
         '#{BCrypt::Password.create(Faker::Internet.password(8))}',
