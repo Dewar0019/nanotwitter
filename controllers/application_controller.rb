@@ -12,4 +12,10 @@ class ApplicationController < Sinatra::Base
 
   before { cache_control :public, :must_revalidate, :max_age => 0 }
   after { ActiveRecord::Base.connection.close }
+
+  get '/search' do
+  	@users = search(params[:search_term])
+  	erb :search_results
+  end
+
 end

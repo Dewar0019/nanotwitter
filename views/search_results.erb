@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Search Results</h2>
+  <%if @users.nil? || @users.length == 0%>
+    <p>No Matches Found</p>
+  <% else %>
+    <p><%= @users.length %> matches found</p> 
+    <div class="row">
+      <% @users.each do |u| %>
+        <%= erb :_user, :locals => { u: u } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
