@@ -14,8 +14,8 @@ class ApplicationController < Sinatra::Base
   after { ActiveRecord::Base.connection.close }
 
   get '/search' do
-  	@users = search(params[:search_term])
-  	erb :search_results
+    @users = search(params[:search_term])
+    erb :search_results
   end
 
 end
