@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   before_save :downcase_fields
 
+  scope :most_recent_updated, -> { order(updated_at: :desc).first }
+
   def downcase_fields
     self.user_name.downcase!
     self.email.downcase!

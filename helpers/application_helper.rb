@@ -62,7 +62,9 @@ module Sinatra
     end
 
     def search(search_term)
+      $redis2.fetch(search_term + "/" + User.most_recent_updated.cache_key) do
         User.where("user_name like? OR email like?", "%#{search_term}%", "%#{search_term}%")
+      end
     end
 
   end
