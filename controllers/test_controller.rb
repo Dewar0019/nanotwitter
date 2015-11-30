@@ -26,5 +26,14 @@ class TestController < ApplicationController
     SeedFollowingWorker.perform_async(params[:number].to_i)
     redirect '/sidekiq'
   end
+
+  get '/user/testuser' do
+    redirect "/users/#{test_user.id}"
+  end
+
+  get '/user/testuser/tweet' do
+    SeedTweetWorker.perform_async(1)
+    redirect '/sidekiq'
+  end
 end
 
