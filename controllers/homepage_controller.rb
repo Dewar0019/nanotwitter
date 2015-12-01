@@ -11,8 +11,10 @@ class HomepageController < ApplicationController
     else
       @tweets = Tweet.recent(100)
       t = Tweet.most_recent_updated
-      set_last_modified(t)
-      set_etag(t)
+      unless t.blank?
+        set_last_modified(t)
+        set_etag(t)
+      end
     end
 
     erb :index

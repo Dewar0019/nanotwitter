@@ -31,8 +31,14 @@ module Sinatra
 
     ##
     # return cache key for 100 recent tweets list
+    # if empty, return "list/empty"
     def recent_tweets_list_cache_key
-      "list/#{Tweet.most_recent_updated.cache_key}"
+      t = Tweet.most_recent_updated
+      if t.blank?
+        "list/empty"
+      else
+        "list/#{t.cache_key}"
+      end
     end
 
     ##
