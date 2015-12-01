@@ -43,16 +43,15 @@ class UserController < ApplicationController
   post '/users/:id/followers/new' do
     new_follow = Follow.new(user_id: session[:user_id], following_id: params[:id])
     if new_follow.save
-      redirect "/users/#{current_user.id}" 
+      redirect "/users/#{current_user.id}/followings"
     else
       "Error"
     end
   end
 
   post '/users/:id/followers/delete' do
-    follow = Follow.find_by(user_id: session[:user_id], following_id: params[:id])
-    Follow.destroy(follow.id)
-    redirect "/users/#{params[:id]}"
+    Follow.find_by(user_id: session[:user_id], following_id: params[:id]).destroy
+    redirect "/users/#{current_user.id}/followings"
   end
 
   get '/users/:id/favorites' do
