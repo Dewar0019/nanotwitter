@@ -4,7 +4,17 @@
       <div class="caption">
         <h3> <%= link_to(u.name, "/users/#{u.id}") %></h3>
         <p> <%= u.user_name %> </p>
-        <%= erb :_follow_button%>
+        <% if login? and !current_user?(u) %>
+		    <% if Follow.follow?(current_user, u) %>
+		      <form action=<%= "/users/#{u.id}/followers/delete" %> method="post">
+		        <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
+		      </form>
+		      <% else %>
+		      <form action=<%= "/users/#{u.id}/followers/new" %> method="post">
+		        <button type="submit" class="btn btn-primary">Follow</button>
+		      </form>
+		    <% end %>
+		  <% end %>
       </div>
     </div>
   </div>

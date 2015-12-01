@@ -43,7 +43,7 @@ class UserController < ApplicationController
   post '/users/:id/followers/new' do
     new_follow = Follow.new(user_id: session[:user_id], following_id: params[:id])
     if new_follow.save
-      redirect "/users/#{current_user}"
+      redirect "/users/#{current_user.id}" 
     else
       "Error"
     end
