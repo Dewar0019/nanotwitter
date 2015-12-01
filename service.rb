@@ -60,7 +60,7 @@ end
 get '/api/v1/users/:id/following' do
    user = User.find_by(id: params[:id])
   if !user
-    error 404, {:error => "no recent tweets found"}.to_json
+    error 404, {:error => "no user found"}.to_json
   else
     followers = Follow.get_followings(user)
     if followers
@@ -74,7 +74,7 @@ end
 get '/api/v1/users/:id/retweets' do
   user = User.find_by(id: params[:id])
   if !user
-    error 404, {:error => "no recent tweets found"}.to_json
+    error 404, {:error => "no user found"}.to_json
   else
     retweets = Retweet.recent(100, user)
     if retweets
@@ -85,7 +85,19 @@ get '/api/v1/users/:id/retweets' do
   end
 end
 
-
+get '/api/v1/users/:id/favorites' do
+  user = User.find_by(id: params[:id])
+  if !user
+    error 404, {:error => "no user found"}.to_json
+  else
+    favorite = Favorite.recent(50, user)
+    if favorite
+      favorite.to_json
+    else
+       error 404, {:error => "no favorites found"}.to_json
+    end
+  end
+end
 
 
 
