@@ -1,13 +1,12 @@
-
 <div class= "userprofile col-md-offset-1 col-md-2">
   <a href=<%= "/users/#{user.id}"%>><img class="img-responsive" id="avatar" src=<%= gravatar_url(user) %>>
-    <div class="col-md-offset-2 col-sm-10">
-      <%= link_to(user.name, request.path_info) %>
-      <br>
-      @<%= user.user_name %>
-      <br>
-      <%= user.bio %>
-    </div>
+  <div class="col-md-offset-2 col-sm-10">
+    <%= link_to(user.name, request.path_info) %>
+    <br>
+    @<%= user.user_name %>
+    <br>
+    <%= user.bio %>
+  </div>
 </div>
 
 <div class="row spacer">
@@ -20,41 +19,35 @@
   <div class="col-md-offset-3 col-md-1 text-center linkto">
     Tweets
     <br>
-  <%= link_to("#{user.tweets_count}", "/users/#{user.id}") %></span>
-</div>
-<div class="col-md-1 text-center linkto">
-  Following
-  <br>
-  <%= link_to("#{user.followings_count}", "/users/#{user.id}/followings") %>
-</div>
-<div class="col-md-1 text-center linkto">
-  Followers
-  <br>
-  <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
-</div>
-<div class="col-md-1 text-center linkto">
-  Retweets
-  <br>
-  <%= link_to("#{user.retweets_count}", "/users/#{user.id}/retweets") %>
-</div>
-<div class="col-md-1 text-center linkto">
-  Favorites
-  <br>
-  <%= link_to("#{user.favorites_count}", "/users/#{user.id}/favorites") %>
-</div>
+    <%= link_to("#{user.tweets_count}", "/users/#{user.id}") %></span>
+  </div>
 
-<div class="col-md-1 text-center">
-  <% if login? and !current_user?(user) %>
-    <% if Follow.follow?(current_user, user) %>
-      <form action=<%= "/users/#{user.id}/followers/delete" %> method="post">
-        <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
-      </form>
-      <% else %>
-        <form action=<%= "#{request.path_info}/followers/new" %> method="post">
-        <button type="submit" class="btn btn-primary">Follow</button>
-      </form>
-    <% end %>
-  <% end %>
+  <div class="col-md-1 text-center linkto">
+    Following
+    <br>
+    <%= link_to("#{user.followings_count}", "/users/#{user.id}/followings") %>
+  </div>
+
+  <div class="col-md-1 text-center linkto">
+    Followers
+    <br>
+    <%= link_to("#{user.followers_count}", "/users/#{user.id}/followers") %>
+  </div>
+
+  <div class="col-md-1 text-center linkto">
+    Retweets
+    <br>
+    <%= link_to("#{user.retweets_count}", "/users/#{user.id}/retweets") %>
+  </div>
+
+  <div class="col-md-1 text-center linkto">
+    Favorites
+    <br>
+    <%= link_to("#{user.favorites_count}", "/users/#{user.id}/favorites") %>
+  </div>
+
+  <div class="col-md-1 text-center">
+    <%= erb :_follow_button %>
   </div>
 </div>
 
