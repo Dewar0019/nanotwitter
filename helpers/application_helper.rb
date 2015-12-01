@@ -63,7 +63,7 @@ module Sinatra
 
     def search(search_term)
       $redis2.fetch(search_term + "/users/" + User.most_recent_updated.cache_key) do
-        @users = User.where("user_name like? OR email like?", "%#{search_term}%", "%#{search_term}%")
+        @users = User.where("user_name like? OR name like?", "%#{search_term}%", "%#{search_term}%")
       end
       $redis2.fetch(search_term + "/hashtags/" + Tweet.most_recent_updated.cache_key) do
         ids = Tag.where(tag: search_term).order(created_at: :desc).pluck(:tweet_id)

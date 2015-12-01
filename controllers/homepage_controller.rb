@@ -1,7 +1,9 @@
 require './helpers/tweet_helper'
+require './helpers/user_helper.rb'
 
 class HomepageController < ApplicationController
   helpers Sinatra::TweetHelpers
+  helpers Sinatra::UserHelpers
 
   get '/' do
     if login?
@@ -19,4 +21,5 @@ class HomepageController < ApplicationController
 
     erb :index
   end
+
 end
