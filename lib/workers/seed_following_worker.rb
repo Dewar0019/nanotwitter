@@ -5,20 +5,9 @@ class SeedFollowingWorker
   include Sinatra::TestHelpers
 
   def perform(number)
-    columns = [:user_id, :following_id, :created_at, :updated_at]
-    values = []
-
     followings = ( User.ids - [ test_user.id ] ).sample( number )
     followings.each do |f|
-      values << %Q[
-        (#{f}, #{test_user.id}, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-      ]
+      Follow.create(user_id: f, following: test_user)
     end
-
-    ActiveRecord::Base.connection.execute(
-      "INSERT INTO follows (#{columns.join(',')}) VALUES #{values.join(',')}"
-    )
-
-    test_user.increment!(:followers_count, number)
   end
 end

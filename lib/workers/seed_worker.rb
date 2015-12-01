@@ -1,5 +1,3 @@
-require "activerecord-import/base"
-
 class SeedWorker
   include Sidekiq::Worker
 
