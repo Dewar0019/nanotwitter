@@ -24,14 +24,14 @@ $ bundle install
 
 #### Install Heroku toolbelt
 
-Please check [Heroku][https://toolbelt.heroku.com] for more information.
+Please check [Heroku](https://toolbelt.heroku.com) for more information.
 
 #### Starting the app locally
 ```sh
 $ heroku local
 ```
 
-Open your browser and go to url http://localhost:5000/
+Open your browser and go to url [http://localhost:5000/]
 
 
 #Copyright and License
