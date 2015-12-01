@@ -1,3 +1,11 @@
+<div class="row spacer">
+  <div class="span4">...</div> 
+    <div class="span4">...</div> 
+
+  <div class="span4">...</div> 
+
+</div>
+
 <div class="container">
   <% @tweets.each do |tweet| %>
     <%= erb :_tweet, :locals => { tweet: tweet } %>

@@ -10,7 +10,7 @@ class Tweet < ActiveRecord::Base
     presence: true,
     length: { minimum: 1, maximum: 140 }
 
-  after_create :add_to_timeline_self, :add_to_timeline_followers
+  after_create :add_to_timeline_self, :add_to_timeline_followers, :add_to_tags_table
 
   scope :most_recent_updated, -> { order(updated_at: :desc).first }
 
@@ -49,6 +49,15 @@ class Tweet < ActiveRecord::Base
   def add_to_timeline_followers
     self.user.followers.each do |follower|
       Timeline.create(tweet: self, user: follower.user)
+    end
+  end
+
+  def add_to_tags_table
+    tags = Tag.extract_hashtags(self.text)
+    if !tags.empty?
+      tags.each do |tag|
+        Tag.create(tag: tag, tweet: self)
+      end
     end
   end
 

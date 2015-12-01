@@ -4,7 +4,7 @@
         <button id="follow_unfollow" type="submit" class="btn btn-primary">Following</button>
       </form>
       <% else %>
-      <form action=<%= request.path_info + "/followers/new" %> method="post">
+      <form action=<%= "/" + request.path_info.split("/")[1] + "/" + request.path_info.split("/")[2] + "/followers/new" %> method="post">
         <button type="submit" class="btn btn-primary">Follow</button>
       </form>
     <% end %>

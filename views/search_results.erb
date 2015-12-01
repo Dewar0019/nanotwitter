@@ -1,13 +1,23 @@
+<% cache search_users_cache_key(params[:search_term]) do %>
 <div class="container">
-  <h2>Search Results</h2>
-  <%if @users.nil? || @users.length == 0%>
-    <p>No Matches Found</p>
+  <p>Users</p>
+  <%if (@users.nil? || @users.length == 0)%>
+    <p>No Users Found</p>
   <% else %>
-    <p><%= @users.length %> matches found</p> 
     <div class="row">
       <% @users.each do |u| %>
         <%= erb :_user, :locals => { u: u } %>
       <% end %>
     </div>
   <% end %>
+<% end %>
+
+<% cache search_hashtags_cache_key(params[:search_term]) do %>
+<p>Tweets</p>
+<%if (@tweets.nil? || @tweets.length == 0)%>
+    <p>No Tweets Found</p>
+  <% else %>
+      <%= erb :_tweets_list %>    
+  <% end %>
 </div>
+<% end %>
