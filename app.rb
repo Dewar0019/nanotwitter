@@ -14,6 +14,7 @@ class NanoTwitter < Sinatra::Base
   use TestController
   use TweetController
   use UserController
+  use APIController
 
   not_found do
     "The page you requested doesn't exist"
