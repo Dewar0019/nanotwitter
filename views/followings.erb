@@ -8,6 +8,7 @@
   <div class="row">
      <% @users.each do |u| %>
       <%= erb :_user, :locals => { u: u } %>
+      
     <% end %>
   </div>
 </div>

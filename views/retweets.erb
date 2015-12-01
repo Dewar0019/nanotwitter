@@ -1,5 +1,8 @@
 <%= erb :_user_profile %>
 
+<div class="row spacer">
+  <div class="span4">...</div>
+</div>
 <% cache retweets_list_cache_key do %>
   <%= erb :_tweets_list %>
 <% end %>
