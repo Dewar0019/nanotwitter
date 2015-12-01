@@ -31,7 +31,7 @@ Please check [Heroku](https://toolbelt.heroku.com) for more information.
 $ heroku local
 ```
 
-Open your browser and go to url [http://localhost:5000/]
+Open your browser and go to url [http://localhost:5000/](http://localhost:5000/)
 
 
 #Copyright and License
