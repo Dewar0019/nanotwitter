@@ -1,7 +1,12 @@
 <% cache u do %>
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
+
       <div class="caption">
+      	<a href=<%= "/users/#{u.id}"%>><img class="img-responsive" align="left" id="followAvatar" src=<%= gravatar_url(u) %>>
+      	<div class="row spacer">
+  			<div class="span4"></div>
+		</div>
         <h3> <%= link_to(u.name, "/users/#{u.id}") %></h3>
         <p> <%= u.user_name %> </p>
         <% if login? and !current_user?(u) %>
@@ -19,3 +24,5 @@
     </div>
   </div>
 <% end %>
+
+
