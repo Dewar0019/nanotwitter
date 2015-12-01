@@ -22,12 +22,16 @@ Check it out at [http://smalltwitter.herokuapp.com/](http://smalltwitter.herokua
 $ bundle install
 ```
 
+#### Install Heroku toolbelt
+
+Please check [Heroku][https://toolbelt.heroku.com] for more information.
+
 #### Starting the app locally
 ```sh
-$ bundle exec rackup -p 4567
+$ heroku local
 ```
 
-Open your browser and go to url http://localhost:4567/
+Open your browser and go to url http://localhost:5000/
 
 
 #Copyright and License
