@@ -67,7 +67,7 @@ module Sinatra
       end
       $redis2.fetch(search_term + "/hashtags/" + Tweet.most_recent_updated.cache_key) do
         ids = Tag.where(tag: search_term).order(created_at: :desc).pluck(:tweet_id)
-        @tweets = Tweet.includes(:user).where(id: ids).order(created_at: :desc)    
+        @tweets = Tweet.includes(:user).where(id: ids).order(created_at: :desc)
       end
       return @users, @tweets
     end
