@@ -5,6 +5,8 @@ class ResetAllWorker
   include Sinatra::TestHelpers
 
   def perform
+    Sidekiq::Queue.new.clear
+
     User.destroy_all
     Tweet.destroy_all
     Follow.destroy_all
