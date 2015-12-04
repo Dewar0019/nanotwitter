@@ -10,14 +10,12 @@
 
   <body>
     testuser id: <span id="testuser">null</span><br>
-    users: <span id="users"><%= User.count %></span><br>
-    follows: <span id="follows"><%= Follow.count %></span><br>
-    tweets: <span id="tweets"><%= Tweet.count %></span><br>
-
+    users: <span id="users">0</span><br>
+    follows: <span id="follows">0</span><br>
+    tweets: <span id="tweets">0</span><br>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
-    var timer = 0;
 
     function testuser() {
       $.ajax({
@@ -27,7 +25,6 @@
         success: function( data ) {
           if (data) {
             $("#testuser").text(data.id);
-            //clearInterval(timer);
           }
         }
       })
@@ -66,12 +63,18 @@
       })
     }
 
-    timer = setInterval(function() {
+    testuser();
+    userNumber();
+    followNumber();
+    tweetNumber();
+
+    setInterval(function() {
       testuser();
       userNumber();
       followNumber();
       tweetNumber();
     }, 7000);
+
     </script>
   </body>
 </html>
