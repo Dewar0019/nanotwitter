@@ -5,6 +5,7 @@ class Tweet < ActiveRecord::Base
   has_many :retweets, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_many :tags, dependent: :destroy
+  has_many :timelines, dependent: :destroy
 
   validates :text,
     presence: true,
