@@ -6,6 +6,8 @@ class ResetAllWorker
 
   def perform
     Sidekiq::Queue.new.clear
+    Sidekiq::ScheduledSet.new.clear
+    Sidekiq::RetrySet.new.clear
 
     User.destroy_all
     Tweet.destroy_all
