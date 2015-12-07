@@ -10,7 +10,6 @@ class ResetAllWorker
     Sidekiq::RetrySet.new.clear
 
     User.destroy_all
-    Tweet.destroy_all
     Follow.destroy_all
 
     create_new_test_user
