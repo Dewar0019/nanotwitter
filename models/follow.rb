@@ -34,9 +34,9 @@ class Follow < ActiveRecord::Base
   end
 
   ##
-  # add exisiting tweets to a new follower
+  # add 50 most recent tweets to a new follower
   def add_to_timeline_new_follower
-    self.following.tweets.each do |t|
+    Tweet.recent(50, self.following).each do |t|
       Timeline.create(user: user, tweet: t)
     end
   end
