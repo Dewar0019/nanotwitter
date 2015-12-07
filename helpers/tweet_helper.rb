@@ -24,9 +24,9 @@ module Sinatra
     end
 
     ##
-    # returns cache key for logged in user's timeline
-    def timeline_cache_key
-      "timeline/#{current_user.cache_key}"
+    # returns cache key for an user's timeline
+    def timeline_cache_key(u)
+      "timeline/#{u.cache_key}"
     end
 
     ##

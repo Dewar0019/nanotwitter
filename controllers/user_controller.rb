@@ -21,12 +21,13 @@ class UserController < ApplicationController
   end
 
   get '/users/:id' do
-    if current_user?(user)
-      @tweets = Timeline.recent(50, current_user)
-    else
-      @tweets = Tweet.recent(50, user)
-    end
+    @tweets = Timeline.recent(50, user)
     erb :users
+  end
+
+  get '/users/:id/tweets' do
+    @tweets = Tweet.recent(50, user)
+    erb :user_tweets
   end
 
   get '/users/:id/followings' do

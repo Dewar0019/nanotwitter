@@ -1,7 +1,7 @@
 <%= erb :_tweets_new %>
 
 <% if login? %>
-  <% cache timeline_cache_key do %>
+  <% cache timeline_cache_key(current_user) do %>
     <%= erb :_tweets_list %>
   <% end %>
 <% else %>
