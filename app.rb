@@ -1,4 +1,5 @@
 require 'bundler'
+require 'rake/testtask'
 Bundler.require
 
 require './config/environments'
@@ -27,4 +28,12 @@ class NanoTwitter < Sinatra::Base
   error 500 do
     "Internal error"
   end
+
+
+  Rake::TestTask.new do |t|
+    t.libs << "test"
+    t.test_files = FileList['test/integration/test.rb','test/unit/user_test.rb','test/unit/authentication_test.rb','test/unit/test_interface_test.rb','test/unit/timeline_test.rb','test/unit/tweet_test.rb']
+    t.verbose = true
+  end
+
 end
