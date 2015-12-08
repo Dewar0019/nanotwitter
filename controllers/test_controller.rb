@@ -48,6 +48,11 @@ class TestController < ApplicationController
 
   get '/user/testuser/tweet' do
     SeedTweetWorker.perform_async(1)
-    redirect '/test/status'
+    redirect "/users/#{test_user.id}"
+  end
+
+  post '/user/testuser/tweet' do
+    SeedTweetWorker.perform_async(1)
+    redirect "/users/#{test_user.id}"
   end
 end
