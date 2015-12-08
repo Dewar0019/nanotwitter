@@ -9,6 +9,7 @@ class AuthenticationTest < MiniTest::Test
   include Capybara::DSL
 
   def setup
+    visit '/logout'
     User.destroy_all
     User.create(:name => "testuser892", :user_name=>"testuser892", :email=>"testuser892@test.com", :password=>"testuser892")
   end
