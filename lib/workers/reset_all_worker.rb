@@ -14,7 +14,7 @@ class ResetAllWorker
     Tweet.delete_all
     $redis1.clear
     $redis2.clear
-    $redis3.clear
+    $redis3.flushdb
 
     create_new_test_user
   end

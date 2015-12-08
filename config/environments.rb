@@ -1,5 +1,5 @@
 # redis1 used for fragment caching
-url1 = ENV['REDIS_URL'] || 'redis://localhost:6379'
+url1 = ENV['REDIS_URL'] || 'redis://localhost:6379/1'
 $redis1 = Readthis::Cache.new(
   expires_in: 2.weeks.to_i,
   redis: { url: url1, driver: :hiredis }
@@ -13,11 +13,8 @@ $redis2 = Readthis::Cache.new(
 )
 
 # redis3 for sidekiq
-url3 = ENV['HEROKU_REDIS_BLACK_URL'] || 'redis//localhost:6389/1'
-$redis3 = Readthis::Cache.new(
-  expires_in: 2.weeks.to_i,
-  redis: { url: url3, driver: :hiredis }
-)
+url3 = ENV['HEROKU_REDIS_BLACK_URL'] || 'redis://localhost:6379/0'
+$redis3 = Redis.new(url: url3, driver: :hiredis)
 
 configure :production do
   require 'newrelic_rpm'
