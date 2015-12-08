@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Nanotwitter by Dewar0019</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Nanotwitter</h1>
+        <h2>Nano Version of Twitter</h2>
+        <a href="https://github.com/Dewar0019/nanotwitter" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>NanoTwitter
+Shraddha Basnyat, Viet Le, Subahu Rayamajhi, Dewar Tan</p>
+
+<h1>
+<a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
+
+<p>This is a nano version of <a href="https://twitter.com/">Twitter</a> that we built for <a href="http://bit.ly/cosi105b-2015">COSI 105B: Software Development for Scability</a> instructed by Pito Salas at Brandeis University.</p>
+
+<p>The main purpose of this project is to apply scaling techniques that we learned in class to a live project under controlled environments.</p>
+
+<h1>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h1>
+
+<p>Following the project guidelines, our NanoTwitter has implemented these functionalities:</p>
+
+<ul>
+<li>
+<p>Users:</p>
+
+<ul>
+<li>can register for an account by supplying an email, an username, a full name and a password</li>
+<li>search for tweets</li>
+</ul>
+</li>
+<li>
+<p>Logged in users</p>
+
+<ul>
+<li>Can follow and unfollow other registered users</li>
+<li>Can tweet</li>
+<li>Can see the flow of the last n tweets by the users that they have followed</li>
+<li>Can favorite and retweet any tweet</li>
+</ul>
+</li>
+<li>
+<p>Non-logged in users</p>
+
+<ul>
+<li>See the flow of the last n tweets by any user</li>
+</ul>
+</li>
+<li>
+<p>Tweets</p>
+
+<ul>
+<li>Consist of
+
+<ul>
+<li>a 140 characters of text (HTML escape)</li>
+<li>a date-time of creation</li>
+</ul>
+</li>
+<li>Belong to one user</li>
+</ul>
+</li>
+</ul>
+
+<p>We also provide REST API:</p>
+
+<ul>
+<li>All stats with /api/v1</li>
+<li>
+<p>Tweets:</p>
+
+<ul>
+<li>/tweets/id</li>
+<li>/tweets/recent</li>
+</ul>
+</li>
+<li>
+<p>Users:</p>
+
+<ul>
+<li>/users/id/tweets</li>
+<li>/users/id/followers</li>
+<li>/users/id/following</li>
+<li>/users/id/retweets</li>
+<li>/users/id/favorites</li>
+</ul>
+</li>
+</ul>
+
+<p>The below screenshots represent our latest version of the application.</p>
+
+<ol>
+<li>Homepage:</li>
+</ol>
+
+<p><img src="http://i.imgur.com/zGNLAby.png" alt="homepage"></p>
+
+<ol>
+<li>Signup page:</li>
+</ol>
+
+<p><img src="http://i.imgur.com/THcqfOq.png" alt="signup"></p>
+
+<ol>
+<li>User page</li>
+</ol>
+
+<p><img src="http://i.imgur.com/k7RjRqh.png" alt="user"></p>
+
+<ol>
+<li>Search results:</li>
+</ol>
+
+<p><img src="http://i.imgur.com/Ov5vhoh.png" alt="search"></p>
+
+<h1>
+<a id="load-testing" class="anchor" href="#load-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load testing</h1>
+
+<p>We used <a href="http://loader.io/">loader.io</a> to benchmark our app, connecting 500 users over the course of 1 minute.</p>
+
+<p>We did 3 main load tests:</p>
+
+<ol>
+<li><p>GET / - load up homepage</p></li>
+<li><p>GET /user/testuser - load up testuser homepage</p></li>
+<li><p>POST /user/testuser/tweet - have testuser create 1 tweet</p></li>
+</ol>
+
+<p>Our final results are as followings:</p>
+
+<ol>
+<li><a href="http://ldr.io/1R64cug">Load homepage</a></li>
+</ol>
+
+
+
+<ol>
+<li><a href="http://ldr.io/1R64txh">Load testuser homepage</a></li>
+</ol>
+
+
+
+<ol>
+<li><a href="http://ldr.io/1HRElDD">Testuser creates 500 tweets</a></li>
+</ol>
+
+
+
+<h1>
+<a id="technology" class="anchor" href="#technology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technology</h1>
+
+<h2>
+<a id="framework" class="anchor" href="#framework" aria-hidden="true"><span class="octicon octicon-link"></span></a>Framework</h2>
+
+<p>The app was build on top of <a href="http://www.sinatrarb.com/">Sinatra</a>, a Ruby web framework, in <a href="http://www.sinatrarb.com/intro.html#Sinatra::Base%20-%20Middleware,%20Libraries,%20and%20Modular%20Apps">modular style</a>.
+A major advantage of writing this app in modular style is that each controller exists as an isolated Sinatra application.</p>
+
+<p>We then use Rack Middleware to mount them to handle the corresponding URL requests.</p>
+
+<h2>
+<a id="web-server" class="anchor" href="#web-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Web Server</h2>
+
+<p>We migrated from Ruby default web server, WEBrick to <a href="http://puma.io/">Puma</a> to take advantage of multithreads.</p>
+
+<h2>
+<a id="database" class="anchor" href="#database" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database</h2>
+
+<p>We used <a href="http://www.postgresql.org/">PostgreSQL</a> for storing persistent data.</p>
+
+<h2>
+<a id="caching" class="anchor" href="#caching" aria-hidden="true"><span class="octicon octicon-link"></span></a>Caching</h2>
+
+<p>We used <a href="http://redis.io/">Redis</a> as caching backend.
+On Heroku, we had 3 Redis stores; one for database query caching, one for <a href="http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching">fragment caching</a> and the last one for <a href="http://sidekiq.org/">sidekiq</a>.</p>
+
+<p>The major improvement in response time comes from fragment caching.
+We put the HTML code for a Tweet object in redis store so each time this object is called, the HTML is printed out.
+This removes the overhead of connecting to database to get this Tweet object.</p>
+
+<p>In one of our load testing, connecting 100 clients to the homepage over the course of 1 minute, the average response time before fragment caching was implemented was 146ms.
+After the fragment caching was introduced, the average time was reduced to 98ms.</p>
+
+<h2>
+<a id="background-jobs" class="anchor" href="#background-jobs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background jobs</h2>
+
+<p>Creating a new user, a new tweet or a new follow are done asynchronously in the background.
+We used <a href="http://sidekiq.org/">Sidekiq</a> gem to achieve this.</p>
+
+<h1>
+<a id="miscellaneous" class="anchor" href="#miscellaneous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Miscellaneous</h1>
+
+<h2>
+<a id="cdn" class="anchor" href="#cdn" aria-hidden="true"><span class="octicon octicon-link"></span></a>CDN</h2>
+
+<p>Instead of serving static assets from Heroku, we take advantage of public Content delivery networks (CDN) to serve <a href="https://jquery.com/">jQuery</a> and <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
+
+<h2>
+<a id="compression" class="anchor" href="#compression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compression</h2>
+
+<p>We use Rack::Deflater, a Rack middleware which intercepts responses, compressing them before sending them back to users.
+Smaller files mean faster response time for end users.</p>
+
+<h2>
+<a id="what-could-be-done-better" class="anchor" href="#what-could-be-done-better" aria-hidden="true"><span class="octicon octicon-link"></span></a>What could be done better</h2>
+
+<p>We used <a href="http://www.postgresql.org/">PostgreSQL</a> on <a href="http://smalltwitter.herokuapp.com/">Heroku</a> and <a href="https://www.sqlite.org/">SQlite</a> because the former was easy to setup on our local machines.
+SQLite lacks a lot of bells and whistles which the former provides.
+Because production and development environments are different, we didn't invest enough time on improving PostgreSQL</p>
+
+<p>A way to improve database performance is to replace ActiveRecord callbacks with <a href="http://www.postgresql.org/docs/current/static/plpgsql-trigger.html">PostgreSQL triggers</a>.
+Currently we use callbacks to copy tweets from one user to all their followers.
+ActiveRecord callbacks basically setup connections to database and run queries.
+Implementing this on PostgreSQL is faster because the application doesn't have to connect to databse and the queries are run internally inside PostgreSQL.</p>
+
+<p><a href="http://sidekiq.org/">Sidekiq</a> jobs run asynchronously, and non-sequentially.
+There are libraries to make background jobs run sequentially.
+Using these, we can have a single URL for creating a test case (reset testuser, seed tweets, seed users, seed followings...), instead of creating 1 job, checking status page to make sure that it is done before running another.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Dewar0019/nanotwitter/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Dewar0019/nanotwitter/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Dewar0019/nanotwitter"></a> is maintained by <a href="https://github.com/Dewar0019">Dewar0019</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
