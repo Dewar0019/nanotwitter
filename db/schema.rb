@@ -20,7 +20,8 @@ ActiveRecord::Schema.define(version: 20151109032603) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "favorites", ["tweet_id"], name: "index_favorites_on_tweet_id"
+  add_index "favorites", ["created_at"], name: "index_favorites_on_created_at"
+  add_index "favorites", ["updated_at"], name: "index_favorites_on_updated_at"
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id"
 
   create_table "follows", force: :cascade do |t|
@@ -33,16 +34,6 @@ ActiveRecord::Schema.define(version: 20151109032603) do
   add_index "follows", ["following_id"], name: "index_follows_on_following_id"
   add_index "follows", ["user_id"], name: "index_follows_on_user_id"
 
-  create_table "replies", force: :cascade do |t|
-    t.integer  "tweet_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "replies", ["tweet_id"], name: "index_replies_on_tweet_id"
-  add_index "replies", ["user_id"], name: "index_replies_on_user_id"
-
   create_table "retweets", force: :cascade do |t|
     t.integer  "tweet_id"
     t.integer  "user_id"
@@ -50,7 +41,8 @@ ActiveRecord::Schema.define(version: 20151109032603) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "retweets", ["tweet_id"], name: "index_retweets_on_tweet_id"
+  add_index "retweets", ["created_at"], name: "index_retweets_on_created_at"
+  add_index "retweets", ["updated_at"], name: "index_retweets_on_updated_at"
   add_index "retweets", ["user_id"], name: "index_retweets_on_user_id"
 
   create_table "tags", force: :cascade do |t|
@@ -69,7 +61,6 @@ ActiveRecord::Schema.define(version: 20151109032603) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "timelines", ["tweet_id"], name: "index_timelines_on_tweet_id"
   add_index "timelines", ["user_id"], name: "index_timelines_on_user_id"
 
   create_table "tweets", force: :cascade do |t|
