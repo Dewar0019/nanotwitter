@@ -28,8 +28,7 @@
     <div id="content-wrapper">
       <div class="inner clearfix">
         <section id="main-content">
-
-<p>Team members: Shraddha Basnyat, Viet Le, Subahu Rayamajhi, Dewar Tan</p>
+          <p>Shraddha Basnyat, Viet Le, Subahu Rayamajhi, Dewar Tan</p>
 
 <h1>
 <a id="introduction" class="anchor" href="#introduction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Introduction</h1>
@@ -88,7 +87,7 @@
 <p>We also provide REST API:</p>
 
 <ul>
-<li>All start with /api/v1</li>
+<li>All stats with /api/v1</li>
 <li>
 <p>Tweets:</p>
 
@@ -114,21 +113,27 @@
 
 <ol>
 <li>Homepage:</li>
-
-<p><img src="https://i.imgur.com/zGNLAby.png" alt="homepage"></p>
-
-<li>Signup page:</li>
-
-<p><img src="https://i.imgur.com/THcqfOq.png" alt="signup"></p>
-
-<li>User page</li>
-
-<p><img src="https://i.imgur.com/k7RjRqh.png" alt="user"></p>
-
-<li>Search results:</li>
-
-<p><img src="https://i.imgur.com/Ov5vhoh.png" alt="search"></p>
 </ol>
+
+<p><img src="http://i.imgur.com/zGNLAby.png" alt="homepage"></p>
+
+<ol>
+<li>Signup page:</li>
+</ol>
+
+<p><img src="http://i.imgur.com/THcqfOq.png" alt="signup"></p>
+
+<ol>
+<li>User page</li>
+</ol>
+
+<p><img src="http://i.imgur.com/k7RjRqh.png" alt="user"></p>
+
+<ol>
+<li>Search results:</li>
+</ol>
+
+<p><img src="http://i.imgur.com/Ov5vhoh.png" alt="search"></p>
 
 <h1>
 <a id="load-testing" class="anchor" href="#load-testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Load testing</h1>
@@ -146,30 +151,28 @@
 <p>Our final results are as followings:</p>
 
 <ol>
-<li><a href="http://ldr.io/1R64cug">Load homepage</a>
-<div style="width: 600px;">
-<iframe width='600' height='300' frameborder='0' src='//share.loader.io/reports/326d3e59792e286c6e3a6936bd255bc0/widget/results/525308bcaeb7d9ca8ceb0fdeb5bd2b22'></iframe>
-<div style="width: 100%; text-align: right;">
-<a href="http://loader.io/reports/326d3e59792e286c6e3a6936bd255bc0/results/525308bcaeb7d9ca8ceb0fdeb5bd2b22" target="_blank" style="padding: 0 10px 10px 0; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 14px;">View on loader.io</a>
-</div></div>
-</li>
-
-<li><a href="http://ldr.io/1R64txh">Load testuser homepage</a>
-<div style="width: 600px;">
-<iframe width='600' height='300' frameborder='0' src='//share.loader.io/reports/ec8b10fecbee10a3074efb0f36718847/widget/results/ecec58927ccc777ef7097afadc954f1f'></iframe>
-<div style="width: 100%; text-align: right;">
-<a href="http://loader.io/reports/ec8b10fecbee10a3074efb0f36718847/results/ecec58927ccc777ef7097afadc954f1f" target="_blank" style="padding: 0 10px 10px 0; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 14px;">View on loader.io</a>
-</div></div>
-</li>
-
-<li><a href="http://ldr.io/1HRElDD">Testuser creates 500 tweets</a>
-<div style="width: 600px;">
-<iframe width='600' height='300' frameborder='0' src='//share.loader.io/reports/cb27819a66470efb424f5a6e4ac56934/widget/results/0667f4917a08bc366b257681ed8f23f8'></iframe>
-<div style="width: 100%; text-align: right;">
-<a href="http://loader.io/reports/cb27819a66470efb424f5a6e4ac56934/results/0667f4917a08bc366b257681ed8f23f8" target="_blank" style="padding: 0 10px 10px 0; font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif; font-size: 14px;">View on loader.io</a>
-</div></div>
-</li>
+<li>###Load Homepage, 2000 visits</li>
 </ol>
+
+<p><a href="http://ldr.io/1TZOIXf">Conditions: users=500 tweets=500 followers=100</a></p>
+
+
+
+<ol>
+<li>###Load Test User, 1800 visits</li>
+</ol>
+
+<p><a href="http://ldr.io/1TZQ4RN">Conditions: users=500 tweets=500 followers=100</a></p>
+
+
+
+<ol>
+<li>###Testuser creates 3000 tweets</li>
+</ol>
+
+<p><a href="http://ldr.io/1RCNFx2">Conditions: users=500 tweets=500 followers=100</a></p>
+
+
 
 <h1>
 <a id="technology" class="anchor" href="#technology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Technology</h1>
@@ -185,7 +188,7 @@ A major advantage of writing this app in modular style is that each controller e
 <h2>
 <a id="web-server" class="anchor" href="#web-server" aria-hidden="true"><span class="octicon octicon-link"></span></a>Web Server</h2>
 
-<p>We migrated from Ruby default web server, WEBrick to <a href="http://puma.io/">Puma</a> to take advantage of multi threads. In our testing, we couldn't find any noticeable difference between the two.</p>
+<p>We migrated from Ruby default web server, WEBrick to <a href="http://puma.io/">Puma</a> to take advantage of multithreads.</p>
 
 <h2>
 <a id="database" class="anchor" href="#database" aria-hidden="true"><span class="octicon octicon-link"></span></a>Database</h2>
@@ -198,25 +201,18 @@ A major advantage of writing this app in modular style is that each controller e
 <p>We used <a href="http://redis.io/">Redis</a> as caching backend.
 On Heroku, we had 3 Redis stores; one for database query caching, one for <a href="http://guides.rubyonrails.org/caching_with_rails.html#fragment-caching">fragment caching</a> and the last one for <a href="http://sidekiq.org/">sidekiq</a>.</p>
 
-<p>The major improvement in response time came from fragment caching.
-We put the HTML for a Tweet object in Redis store so each time this object was called, we got the HTML from Redis.
-This removed the overhead of connecting to database to get the Tweet object.</p>
+<p>The major improvement in response time comes from fragment caching.
+We put the HTML code for a Tweet object in redis store so each time this object is called, the HTML is printed out.
+This removes the overhead of connecting to database to get this Tweet object.</p>
 
 <p>In one of our load testing, connecting 100 clients to the homepage over the course of 1 minute, the average response time before fragment caching was implemented was 146ms.
 After the fragment caching was introduced, the average time was reduced to 98ms.</p>
 
-<p>We also experimented with page caching, storing the entire page in Redis. This was implemented using <a href="http://rtomayko.github.io/rack-cache/">Rack Cache</a>. Our homepage had 2 additional HTTP headers, Etag and Last-Modified, to be used by Rack Cache to know if the page was updated or not. If there was no change, our old HTML page was served directly from Redis. Otherwise, a new page was rendered and stored in Redis for future usage.</p>
-
-<p>Our homepage benefited a lot from full page caching. However, one bug we encountered was that a logged in user was served the cached version of homepage for non logged in users (without ability to post new tweet and logout). We hadn't been able to fix this bug so full page caching hadn't been implemented in other pages.</p>
-
 <h2>
 <a id="background-jobs" class="anchor" href="#background-jobs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background jobs</h2>
 
-<p>We used a lot of callbacks on our application to fill the Timeline table. Every time an user followed another, the former timeline table would be updated with most 50 recent tweets by the latter. Every time the latter tweeted, all of their followers would get the new tweet on their timeline. The major drawback of this implementation was that there were a lot of database writings. Similar to scaling Twitter slides, our application had the cost of  O(1) read and O(n) write.</p>
-
-<p>Background jobs were implemented to reduce the costs of writing. The replication of tweets to all followers were done in the background without affecting the end-users. We used Sidekiq gem to achieve this.</p>
-
-<p>We made an assumption that only a small percentage of users were active content creators, and the rest were content consumers. So the cost of writing was reasonably acceptable to us. However, due to this implementation, it took a long time to setup test cases for load testing. We found that, it was faster to drop and create new database than calling /test/reset/all which tried to destroy every users, tweets, follows and timelines.</p>
+<p>Creating a new user, a new tweet or a new follow are done asynchronously in the background.
+We used <a href="http://sidekiq.org/">Sidekiq</a> gem to achieve this.</p>
 
 <h1>
 <a id="miscellaneous" class="anchor" href="#miscellaneous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Miscellaneous</h1>
@@ -224,26 +220,25 @@ After the fragment caching was introduced, the average time was reduced to 98ms.
 <h2>
 <a id="cdn" class="anchor" href="#cdn" aria-hidden="true"><span class="octicon octicon-link"></span></a>CDN</h2>
 
-<p>Instead of serving static assets from Heroku, we took advantage of public Content delivery networks (CDN) to serve <a href="https://jquery.com/">jQuery</a> and <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
+<p>Instead of serving static assets from Heroku, we take advantage of public Content delivery networks (CDN) to serve <a href="https://jquery.com/">jQuery</a> and <a href="http://getbootstrap.com/">Bootstrap</a>.</p>
 
 <h2>
 <a id="compression" class="anchor" href="#compression" aria-hidden="true"><span class="octicon octicon-link"></span></a>Compression</h2>
 
-<p>We used Rack::Deflater, a Rack middleware which intercepted responses, compressing them before sending them back to users.
-Smaller files resulted in faster response time for end users.</p>
+<p>We use Rack::Deflater, a Rack middleware which intercepts responses, compressing them before sending them back to users.
+Smaller files mean faster response time for end users.</p>
 
 <h2>
 <a id="what-could-be-done-better" class="anchor" href="#what-could-be-done-better" aria-hidden="true"><span class="octicon octicon-link"></span></a>What could be done better</h2>
 
-<p>We used <a href="http://www.postgresql.org/">PostgreSQL</a> on <a href="http://smalltwitter.herokuapp.com/">Heroku</a> and <a href="https://www.sqlite.org/">SQlite</a> locally because the latter was easy to setup on our local machines.
-SQLite lacked a lot of bells and whistles which the former had.
-Because production and development environments were different, we didn't invest enough time on improving PostgreSQL</p>
+<p>We used <a href="http://www.postgresql.org/">PostgreSQL</a> on <a href="http://smalltwitter.herokuapp.com/">Heroku</a> and <a href="https://www.sqlite.org/">SQlite</a> because the former was easy to setup on our local machines.
+SQLite lacks a lot of bells and whistles which the former provides.
+Because production and development environments are different, we didn't invest enough time on improving PostgreSQL</p>
 
-<p>One way of improving database performance was to replace ActiveRecord callbacks with <a href="http://www.postgresql.org/docs/current/static/plpgsql-trigger.html">PostgreSQL triggers</a>.
-In our app, we used callbacks to replicate tweets from one user to all their followers.
-Each callback connected to the database and ran queries.
-Implementing this on PostgreSQL can be faster as we eliminate the need to connect to database.
-Additionally, queries running internally would be faster.</p>
+<p>A way to improve database performance is to replace ActiveRecord callbacks with <a href="http://www.postgresql.org/docs/current/static/plpgsql-trigger.html">PostgreSQL triggers</a>.
+Currently we use callbacks to copy tweets from one user to all their followers.
+ActiveRecord callbacks basically setup connections to database and run queries.
+Implementing this on PostgreSQL is faster because the application doesn't have to connect to databse and the queries are run internally inside PostgreSQL.</p>
 
 <p><a href="http://sidekiq.org/">Sidekiq</a> jobs run asynchronously, and non-sequentially.
 There are libraries to make background jobs run sequentially.
@@ -267,6 +262,6 @@ Using these, we can have a single URL for creating a test case (reset testuser, 
       </div>
     </div>
 
-
+  
   </body>
 </html>
