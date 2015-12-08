@@ -7,6 +7,8 @@ This is a nano version of Twitter we are building for [COSI 105B: Software Devel
 
 Check it out at [http://smalltwitter.herokuapp.com/](http://smalltwitter.herokuapp.com/)
 
+You can find more info at [portolio page](https://dewar0019.github.io/nanotwitter/).
+
 ### Team Members
 * [Shraddha Basnyat](https://github.com/sbasnyat)
 * [Viet Le](https://github.com/lttviet)
