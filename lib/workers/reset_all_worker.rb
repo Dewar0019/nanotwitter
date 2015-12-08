@@ -9,8 +9,12 @@ class ResetAllWorker
     Sidekiq::ScheduledSet.new.clear
     Sidekiq::RetrySet.new.clear
 
-    User.destroy_all
-    Follow.destroy_all
+    User.delete_all
+    Follow.delete_all
+    Tweet.delete_all
+    $redis1.clear
+    $redis2.clear
+    $redis3.clear
 
     create_new_test_user
   end

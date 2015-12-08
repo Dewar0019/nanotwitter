@@ -12,6 +12,13 @@ $redis2 = Readthis::Cache.new(
   redis: { url: url2, driver: :hiredis }
 )
 
+# redis3 for sidekiq
+url3 = ENV['HEROKU_REDIS_BLACK_URL'] || 'redis//localhost:6389/1'
+$redis3 = Readthis::Cache.new(
+  expires_in: 2.weeks.to_i,
+  redis: { url: url3, driver: :hiredis }
+)
+
 configure :production do
   require 'newrelic_rpm'
 
