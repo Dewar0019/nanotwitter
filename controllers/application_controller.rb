@@ -4,6 +4,7 @@ require './helpers/cache_helper'
 class ApplicationController < Sinatra::Base
   set :views, File.expand_path('../../views', __FILE__)
   set :public_folder, File.expand_path('../../public', __FILE__)
+  set :static_cache_control, [:public, max_age: 86400]
 
   helpers Sinatra::ApplicationHelpers
   helpers Sinatra::CacheHelpers
