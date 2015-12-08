@@ -208,8 +208,11 @@ After the fragment caching was introduced, the average time was reduced to 98ms.
 <h2>
 <a id="background-jobs" class="anchor" href="#background-jobs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background jobs</h2>
 
-<p>Creating a new user, a new tweet or a new follow are done asynchronously in the background.
-We used <a href="http://sidekiq.org/">Sidekiq</a> gem to achieve this.</p>
+<p>We used a lot of callbacks on our application to fill out the Timeline table. Everytime an user follows another, the first's timeline table will be updated with most 50 recents tweets by the latter. And everytime the latter tweets, all of their followers will get the new tweet on their timeline. The major drawback of this implementation is that we have to do a lot of writing to database. Similar to scaling Twitter slides, our application has the cost of  O(1) read and O(n) write.</p>
+
+<p>Background jobs were implemented to reduce the costs of writing. The replication of tweets to all followers are done in the background without affecting then end-users. We uses Sidekiq gem to achieve this.</p>
+
+<p>We made an assumption that only a small percentage of users are active content creators, and the rest are content consumers. So the cost of writing was reasonably acceptable to us. However, due to this implementation, it took a long time to setup each test cases for load testing. We found that, it was faster to drop and create new database than calling /test/reset/all which tried to destroy every users, tweets, follows and timelines.</p>
 
 <h1>
 <a id="miscellaneous" class="anchor" href="#miscellaneous" aria-hidden="true"><span class="octicon octicon-link"></span></a>Miscellaneous</h1>
